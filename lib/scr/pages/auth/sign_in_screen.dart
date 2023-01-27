@@ -1,12 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:quitanda/scr/auth/sign_up_screen.dart';
-import 'package:quitanda/scr/base/base_screen.dart';
 import 'package:quitanda/scr/components/custom_text_field.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
+import 'package:quitanda/scr/pages/auth/sign_up_screen.dart';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
+import '../base/base_screen.dart';
+
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);

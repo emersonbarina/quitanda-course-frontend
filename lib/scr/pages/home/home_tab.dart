@@ -1,9 +1,11 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/components/category_tile.dart';
+import 'package:quitanda/scr/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
+import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -13,16 +15,6 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  // Categories
-  List<String> categories = [
-    'Frutas',
-    'Verduras',
-    'Carnes',
-    'Bebidas',
-    'Biscoitos',
-    'Limpeza',
-  ];
-
   String selectedCategory = 'Frutas';
 
   @override
@@ -115,19 +107,37 @@ class _HomeTabState extends State<HomeTab> {
                 return CategoryTile(
                   onPressed: () {
                     setState(() {
-                      selectedCategory = categories[index];
+                      selectedCategory = app_data.categories[index];
                     });
                   },
-                  category: categories[index],
-                  isSelected: categories[index] == selectedCategory,
+                  category: app_data.categories[index],
+                  isSelected: app_data.categories[index] == selectedCategory,
                 );
               },
               separatorBuilder: (_, index) => const SizedBox(width: 10),
-              itemCount: categories.length,
+              itemCount: app_data.categories.length,
             ),
           ),
 
           // Grid
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:  2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5,
+              ),
+              itemCount: app_data.items.length,
+              itemBuilder: (_, index) {
+                return ItemTile(
+                  item: app_data.items[index],
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

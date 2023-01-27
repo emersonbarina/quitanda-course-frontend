@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quitanda/scr/auth/sign_in_screen.dart';
 import 'package:quitanda/scr/constants/colors.dart';
+import 'package:quitanda/scr/pages/auth/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
