@@ -1,7 +1,7 @@
 
 const tAppTitle = 'Mercadinho';
-const tAppTitle1 = 'Mercad';
-const tAppTitle2 = 'inho';
+const tAppTitle1 = 'Mercado';
+const tAppTitle2 = '++';
 const tAppSubtitle = 'O melhor app';
 const tCategory = 'Category';
 
@@ -18,3 +18,5 @@ const tNavHome = 'Home';
 const tNavCart = 'Carrinho';
 const tNavOrder = 'Pedidos';
 const tNavProfile = 'Perfil';
+
+const tSearchHint = 'Pesquise aqui...';
