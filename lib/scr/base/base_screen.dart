@@ -2,16 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
+
+  @override
+  State<BaseScreen> createState() => _BaseScreenState();
+}
+
+class _BaseScreenState extends State<BaseScreen> {
+  int currentIndex = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: tColorsPrimaryBackGround,
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: [
+          Container(color: Colors.red,),
+          Container(color: Colors.yellow,),
+          Container(color: Colors.blue,),
+          Container(color: Colors.green,),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+            pageController.jumpToPage(index);
+          });
+        },
         type: BottomNavigationBarType.fixed,
         backgroundColor: tColorsPrimary,
         selectedItemColor: tColorsLight,
