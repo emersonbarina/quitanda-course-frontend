@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
+import 'package:quitanda/scr/home/home_tab.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _BaseScreenState extends State<BaseScreen> {
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         children: [
-          Container(color: Colors.red,),
+          const HomeTab(),
           Container(color: Colors.yellow,),
           Container(color: Colors.blue,),
           Container(color: Colors.green,),
