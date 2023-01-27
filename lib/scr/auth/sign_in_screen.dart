@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda/scr/auth/sign_up_screen.dart';
 import 'package:quitanda/scr/components/custom_text_field.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
@@ -28,7 +29,7 @@ class SignInScreen extends StatelessWidget {
                     // AppName
                     const Text.rich(
                       TextSpan(
-                        style: TextStyle(fontSize: 40),
+                        style: TextStyle(fontSize: tFontSizeHeader),
                         children: [
                           TextSpan(
                             text: tAppTitle1,
@@ -77,7 +78,7 @@ class SignInScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: tPrimaryBackGround,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
                 ),
                 child: Column(
@@ -86,12 +87,12 @@ class SignInScreen extends StatelessWidget {
                     // Text Field e Button Login
                     const CustomTextField(
                       icon: Icons.email_outlined,
-                      label: "Email",
+                      label: tEmail,
                     ),
                     const CustomTextField(
                       isSecret: true,
                       icon: Icons.lock_outlined,
-                      label: "Senha",
+                      label: tPassword,
                     ),
 
                     // Login Button
@@ -104,7 +105,7 @@ class SignInScreen extends StatelessWidget {
                                     BorderRadius.circular(tBorderRadius))),
                         onPressed: () {},
                         child: const Text(
-                          'Entrar',
+                          tLogin,
                           style: TextStyle(
                             fontSize: tFontSizeButton,
                             color: tPrimaryColorsTextLight,
@@ -159,7 +160,13 @@ class SignInScreen extends StatelessWidget {
                             color: tPrimaryColors,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (c) {
+                              return const SignUpScreen();
+                            }),
+                          );
+                        },
                         child: const Text(
                           'Criar conta',
                           style: TextStyle(fontSize: tFontSizeButton),
