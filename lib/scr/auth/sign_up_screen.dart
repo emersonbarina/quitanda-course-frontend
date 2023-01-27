@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
@@ -6,7 +7,16 @@ import 'package:quitanda/scr/constants/texts.dart';
 import '../components/custom_text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
+
+  final cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
+  final phoneFormatter = MaskTextInputFormatter(
+    mask: '(##) # ####-####',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +32,7 @@ class SignUpScreen extends StatelessWidget {
             children: [
               Column(
                 children: [
+                  // Header
                   const Expanded(
                     child: Center(
                       child: Text(
@@ -58,11 +69,13 @@ class SignUpScreen extends StatelessWidget {
                             icon: Icons.person_outlined,
                             label: tFullName,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            inputFormatters: [phoneFormatter],
                             icon: Icons.phone_outlined,
                             label: tPhone,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            inputFormatters: [cpfFormatter],
                             icon: Icons.file_copy_outlined,
                             label: tCPF,
                           ),
