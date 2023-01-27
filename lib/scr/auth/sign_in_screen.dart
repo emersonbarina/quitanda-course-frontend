@@ -11,153 +11,162 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.orange,
-      body: Column(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // AppName
-                const Text.rich(
-                  TextSpan(
-                    style: TextStyle(fontSize: 40),
-                    children: [
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: size.height,
+          width: size.width,
+          child: Column(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // AppName
+                    const Text.rich(
                       TextSpan(
-                        text: tAppTitle1,
-                        style: TextStyle(
-                          color: tPrimaryColorsTextLight,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontSize: 40),
+                        children: [
+                          TextSpan(
+                            text: tAppTitle1,
+                            style: TextStyle(
+                              color: tPrimaryColorsTextLight,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                            text: tAppTitle2,
+                            style: TextStyle(
+                              color: tPrimaryColorsTextDark,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                      TextSpan(
-                        text: tAppTitle2,
-                        style: TextStyle(
-                          color: tPrimaryColorsTextDark,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Category
-                SizedBox(
-                  height: 30,
-                  child: DefaultTextStyle(
-                    style: const TextStyle(fontSize: 25,),
-                    child: AnimatedTextKit(
-                      pause: Duration.zero ,
-                      repeatForever: true,
-                      animatedTexts: [
-                        FadeAnimatedText('Frutas'),
-                        FadeAnimatedText('Verduras'),
-                        FadeAnimatedText('Legumes'),
-                        FadeAnimatedText('Carnes'),
-                        FadeAnimatedText('Bebidas'),
-                      ],
                     ),
-                  ),
+
+                    // Category
+                    SizedBox(
+                      height: 30,
+                      child: DefaultTextStyle(
+                        style: const TextStyle(fontSize: 25,),
+                        child: AnimatedTextKit(
+                          pause: Duration.zero ,
+                          repeatForever: true,
+                          animatedTexts: [
+                            FadeAnimatedText('Frutas'),
+                            FadeAnimatedText('Verduras'),
+                            FadeAnimatedText('Legumes'),
+                            FadeAnimatedText('Carnes'),
+                            FadeAnimatedText('Bebidas'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              // Form
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Text Field e Button Login
+                    const CustomTextField(
+                      icon: Icons.email_outlined,
+                      label: "Email",
+                    ),
+                    const CustomTextField(
+                      isSecret: true,
+                      icon: Icons.lock_outlined,
+                      label: "Senha",
+                    ),
+
+                    // Login Button
+                    SizedBox(
+                      height: tHeightSizeBox,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(tBorderRadius))),
+                        onPressed: () {},
+                        child: const Text(
+                          'Entrar',
+                          style: TextStyle(fontSize: tFontSizeButton),
+                        ),
+                      ),
+                    ),
+
+                    // Forget Password
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text('Esqueceu a senha?'),
+                      ),
+                    ),
+
+                    // Divisor
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: tSpacePadding),
+                      child: Row(
+                        children: const [
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: tSpacePadding),
+                            child: Text('Ou'),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // New account
+                    SizedBox(
+                      height: tHeightSizeBox,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(tBorderRadius),
+                          ),
+                          side: const BorderSide(
+                            width: 2,
+                            color: tPrimaryColors,
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'Criar conta',
+                          style: TextStyle(fontSize: tFontSizeButton),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-
-          // Form
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Text Field e Button Login
-                const CustomTextField(
-                  icon: Icons.email_outlined,
-                  label: "Email",
-                ),
-                const CustomTextField(
-                  isSecret: true,
-                  icon: Icons.lock_outlined,
-                  label: "Senha",
-                ),
-
-                // Login Button
-                SizedBox(
-                  height: tHeightSizeBox,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(tBorderRadius))),
-                    onPressed: () {},
-                    child: const Text(
-                      'Entrar',
-                      style: TextStyle(fontSize: tFontSizeButton),
-                    ),
-                  ),
-                ),
-
-                // Forget Password
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text('Esqueceu a senha?'),
-                  ),
-                ),
-
-                // Divisor
-                Padding(
-                  padding: const EdgeInsets.only(bottom: tSpacePadding),
-                  child: Row(
-                    children: const [
-                      Expanded(
-                        child: Divider(
-                          thickness: 2,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: tSpacePadding),
-                        child: Text('Ou'),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // New account
-                SizedBox(
-                  height: tHeightSizeBox,
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(tBorderRadius),
-                      ),
-                      side: const BorderSide(
-                        width: 2,
-                        color: tPrimaryColors,
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Criar conta',
-                      style: TextStyle(fontSize: tFontSizeButton),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
