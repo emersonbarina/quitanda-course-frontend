@@ -18,71 +18,85 @@ class SignUpScreen extends StatelessWidget {
         child: SizedBox(
           height: size.height,
           width: size.width,
-          child: Column(
+          child: Stack(
             children: [
-              const Expanded(
-                child: Center(
-                  child: Text(
-                    tTitleAccount,
-                    style: TextStyle(
-                        color: tPrimaryColorsTextLight,
-                        fontSize: tFontSizeHeader,
-                        fontWeight: FontWeight.bold),
+              Column(
+                children: [
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        tTitleAccount,
+                        style: TextStyle(
+                            color: tPrimaryColorsTextLight,
+                            fontSize: tFontSizeHeader,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
-                ),
-              ),
 
-              // Form
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
-                decoration: const BoxDecoration(
-                  color: tPrimaryBackGround,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-                ),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // Text Field e Button Login
-                      const CustomTextField(
-                        icon: Icons.email_outlined,
-                        label: tEmail,
-                      ),
-                      const CustomTextField(
-                        isSecret: true,
-                        icon: Icons.lock_outlined,
-                        label: tPassword,
-                      ),
-                      const CustomTextField(
-                        icon: Icons.person_outlined,
-                        label: tFullName,
-                      ),
-                      const CustomTextField(
-                        icon: Icons.phone_outlined,
-                        label: tPhone,
-                      ),
-                      const CustomTextField(
-                        icon: Icons.file_copy_outlined,
-                        label: tCPF,
-                      ),
-                      SizedBox(
-                        height: tHeightSizeBox,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(tBorderRadius))),
-                          onPressed: () {},
-                          child: const Text(
-                            tSaveAccount,
-                            style: TextStyle(
-                              fontSize: tFontSizeButton,
-                              color: tPrimaryColorsTextLight,
+                  // Form
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+                    decoration: const BoxDecoration(
+                      color: tPrimaryBackGround,
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // Text Field e Button Login
+                          const CustomTextField(
+                            icon: Icons.email_outlined,
+                            label: tEmail,
+                          ),
+                          const CustomTextField(
+                            isSecret: true,
+                            icon: Icons.lock_outlined,
+                            label: tPassword,
+                          ),
+                          const CustomTextField(
+                            icon: Icons.person_outlined,
+                            label: tFullName,
+                          ),
+                          const CustomTextField(
+                            icon: Icons.phone_outlined,
+                            label: tPhone,
+                          ),
+                          const CustomTextField(
+                            icon: Icons.file_copy_outlined,
+                            label: tCPF,
+                          ),
+                          SizedBox(
+                            height: tHeightSizeBox,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(tBorderRadius))),
+                              onPressed: () {},
+                              child: const Text(
+                                tSaveAccount,
+                                style: TextStyle(
+                                  fontSize: tFontSizeButton,
+                                  color: tPrimaryColorsTextLight,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                ),
+                        ],
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: SafeArea(child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios, color: tPrimaryBackGround,),
+                ),),
               ),
             ],
           ),
