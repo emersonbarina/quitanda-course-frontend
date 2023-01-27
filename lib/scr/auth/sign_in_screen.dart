@@ -11,7 +11,6 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -53,9 +52,11 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       height: 30,
                       child: DefaultTextStyle(
-                        style: const TextStyle(fontSize: 25,),
+                        style: const TextStyle(
+                          fontSize: 25,
+                        ),
                         child: AnimatedTextKit(
-                          pause: Duration.zero ,
+                          pause: Duration.zero,
                           repeatForever: true,
                           animatedTexts: [
                             FadeAnimatedText('Frutas'),
@@ -73,7 +74,8 @@ class SignInScreen extends StatelessWidget {
 
               // Form
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
@@ -103,7 +105,10 @@ class SignInScreen extends StatelessWidget {
                         onPressed: () {},
                         child: const Text(
                           'Entrar',
-                          style: TextStyle(fontSize: tFontSizeButton),
+                          style: TextStyle(
+                            fontSize: tFontSizeButton,
+                            color: tPrimaryColorsTextLight,
+                          ),
                         ),
                       ),
                     ),
