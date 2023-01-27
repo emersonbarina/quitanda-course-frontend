@@ -14,4 +14,7 @@ const tFullName = 'Nome';
 const tPhone = 'Telefone';
 const tCPF = 'CPF';
 
-
+const tNavHome = 'Home';
+const tNavCart = 'Carrinho';
+const tNavOrder = 'Pedidos';
+const tNavProfile = 'Perfil';

@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     
     return Scaffold(
-      backgroundColor: tPrimaryColors,
+      backgroundColor: tColorsPrimary,
       body: SingleChildScrollView(
         child: SizedBox(
           height: size.height,
@@ -38,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
                       child: Text(
                         tTitleAccount,
                         style: TextStyle(
-                            color: tPrimaryColorsTextLight,
+                            color: tColorsLight,
                             fontSize: tFontSizeHeader,
                             fontWeight: FontWeight.bold),
                       ),
@@ -49,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                     decoration: const BoxDecoration(
-                      color: tPrimaryBackGround,
+                      color: tColorsPrimaryBackGround,
                       borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
                     ),
                     child: Column(
@@ -91,7 +91,7 @@ class SignUpScreen extends StatelessWidget {
                                 tSaveAccount,
                                 style: TextStyle(
                                   fontSize: tFontSizeButton,
-                                  color: tPrimaryColorsTextLight,
+                                  color: tColorsLight,
                                 ),
                               ),
                             ),
@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: const Icon(Icons.arrow_back_ios, color: tPrimaryBackGround,),
+                  icon: const Icon(Icons.arrow_back_ios, color: tColorsPrimaryBackGround,),
                 ),),
               ),
             ],

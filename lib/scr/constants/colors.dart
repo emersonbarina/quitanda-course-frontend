@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-const tPrimaryColors = Colors.orange;
-const tPrimaryBackGround = Colors.white;
-const tPrimaryColorsTextLight = Colors.white;
-const tPrimaryColorsTextDark = Colors.black54;
+const tColorsPrimary = Colors.orange;
+const tColorsPrimaryBackGround = Colors.white;
+const tColorsLight = Colors.white;
+const tColorsLightUnselected = Colors.white60;
+
+const tColorsDark = Colors.black54;

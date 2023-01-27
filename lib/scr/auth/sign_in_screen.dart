@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/auth/sign_up_screen.dart';
+import 'package:quitanda/scr/base/base_screen.dart';
 import 'package:quitanda/scr/components/custom_text_field.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
@@ -34,14 +35,14 @@ class SignInScreen extends StatelessWidget {
                           TextSpan(
                             text: tAppTitle1,
                             style: TextStyle(
-                              color: tPrimaryColorsTextLight,
+                              color: tColorsLight,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           TextSpan(
                             text: tAppTitle2,
                             style: TextStyle(
-                              color: tPrimaryColorsTextDark,
+                              color: tColorsDark,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -78,7 +79,7 @@ class SignInScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 decoration: const BoxDecoration(
-                  color: tPrimaryBackGround,
+                  color: tColorsPrimaryBackGround,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
                 ),
                 child: Column(
@@ -103,12 +104,18 @@ class SignInScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(tBorderRadius))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (c) {
+                              return const BaseScreen();
+                            }),
+                          );
+                        },
                         child: const Text(
                           tLogin,
                           style: TextStyle(
                             fontSize: tFontSizeButton,
-                            color: tPrimaryColorsTextLight,
+                            color: tColorsLight,
                           ),
                         ),
                       ),
@@ -118,7 +125,9 @@ class SignInScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+
+                        },
                         child: const Text('Esqueceu a senha?'),
                       ),
                     ),
@@ -157,7 +166,7 @@ class SignInScreen extends StatelessWidget {
                           ),
                           side: const BorderSide(
                             width: 2,
-                            color: tPrimaryColors,
+                            color: tColorsPrimary,
                           ),
                         ),
                         onPressed: () {
