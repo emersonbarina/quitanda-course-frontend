@@ -38,7 +38,12 @@ class ItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   //image
-                  Expanded(child: Image.asset(item.imgUrl)),
+                  Expanded(
+                    child: Hero(
+                      tag: item.imgUrl ,
+                      child: Image.asset(item.imgUrl),
+                    ),
+                  ),
 
                   //name
                   Text(
@@ -78,26 +83,25 @@ class ItemTile extends StatelessWidget {
         // Button Add Cart
         Positioned(
           top: 4,
-            right: 4,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 40,
-                width: 35,
-                decoration: const BoxDecoration(
+          right: 4,
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 40,
+              width: 35,
+              decoration: const BoxDecoration(
                   color: tColorsPrimary,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    topRight: Radius.circular(tBorderRadius)
-                  )
-                ),
-                child: const Icon(
-                  Icons.add_shopping_cart_outlined,
-                  color: tColorsLight,
-                  size: 20,
-                ),
+                      bottomLeft: Radius.circular(15),
+                      topRight: Radius.circular(tBorderRadius))),
+              child: const Icon(
+                Icons.add_shopping_cart_outlined,
+                color: tColorsLight,
+                size: 20,
               ),
-            ),),
+            ),
+          ),
+        ),
       ],
     );
   }
