@@ -81,7 +81,7 @@ class SignInScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 decoration: const BoxDecoration(
                   color: tColorsPrimaryBackGround,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(tBorderRadiusCircular)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
