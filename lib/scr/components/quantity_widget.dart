@@ -26,11 +26,14 @@ class QuantityWidget extends StatelessWidget {
             icon: Icons.remove,
             onPressed: () {},
           ),
-          const Text(
-            '1Kg',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 6.0),
+            child: Text(
+              '1Kg',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           _QuantityButton(
