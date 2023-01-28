@@ -23,8 +23,9 @@ class QuantityWidget extends StatelessWidget {
         children: [
           Material(
             child: InkWell(
+              borderRadius: BorderRadius.circular(50),
               onTap: () {},
-              child: Container(
+              child: Ink(
                 height: 50,
                 width: 50,
                 decoration:
