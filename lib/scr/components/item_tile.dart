@@ -16,53 +16,78 @@ class ItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      shadowColor: Colors.grey.shade300,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(tBorderRadius),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //image
-            Expanded(child: Image.asset(item.imgUrl)),
-
-            //name
-            Text(
-              item.itemName,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            //price - unidade
-            Row(
+    return Stack(
+      children: [
+        Card(
+          elevation: 1,
+          shadowColor: Colors.grey.shade300,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(tBorderRadius),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                //image
+                Expanded(child: Image.asset(item.imgUrl)),
+
+                //name
                 Text(
-                  utilsServices.priceToCurrency(item.price),
+                  item.itemName,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: tColorsPrimary,
                   ),
                 ),
-
-                Text(
-                  '/${item.unit}',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade500,
-                  ),
+                //price - unidade
+                Row(
+                  children: [
+                    Text(
+                      utilsServices.priceToCurrency(item.price),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: tColorsPrimary,
+                      ),
+                    ),
+                    Text(
+                      '/${item.unit}',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
+        Positioned(
+          top: 4,
+            right: 4,
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                height: 40,
+                width: 35,
+                decoration: const BoxDecoration(
+                  color: tColorsPrimary,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    topRight: Radius.circular(tBorderRadius)
+                  )
+                ),
+                child: const Icon(
+                  Icons.add_shopping_cart_outlined,
+                  color: tColorsLight,
+                  size: 20,
+                ),
+              ),
+            ),),
+      ],
     );
   }
 }
