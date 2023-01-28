@@ -21,24 +21,60 @@ class QuantityWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Material(
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50),
-              onTap: () {},
-              child: Ink(
-                height: 50,
-                width: 50,
-                decoration:
-                    const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-                child: const Icon(
-                  Icons.remove_outlined,
-                  color: tColorsLight,
-                  size: 16,
-                ),
-              ),
+          _QuantityButton(
+            color: Colors.grey,
+            icon: Icons.remove,
+            onPressed: () {},
+          ),
+          const Text(
+            '1Kg',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
             ),
           ),
+          _QuantityButton(
+            color: tColorsPrimary,
+            icon: Icons.add,
+            onPressed: () {},
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _QuantityButton extends StatelessWidget {
+  const _QuantityButton({
+    Key? key,
+    required this.color,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
+
+  final Color color;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(50),
+        onTap: onPressed,
+        child: Ink(
+          height: 25,
+          width: 25,
+          decoration: BoxDecoration(
+            color: color,
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            icon,
+            color: tColorsLight,
+            size: 16,
+          ),
+        ),
       ),
     );
   }
