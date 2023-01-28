@@ -20,3 +20,4 @@ const tNavOrder = 'Pedidos';
 const tNavProfile = 'Perfil';
 
 const tSearchHint = 'Pesquise aqui...';
+const tAddCart = 'Adicionar ao Carrinho';
