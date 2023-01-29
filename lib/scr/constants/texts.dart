@@ -21,3 +21,5 @@ const tNavProfile = 'Perfil';
 
 const tSearchHint = 'Pesquise aqui...';
 const tAddCart = 'Adicionar ao Carrinho';
+const tTotalCart = 'Valor Total';
+const tFinishOrder = 'Finalizar a compra';
