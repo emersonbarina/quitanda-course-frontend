@@ -41,12 +41,9 @@ class QuantityWidget extends StatelessWidget {
                 ? Icons.remove
                 : Icons.delete_forever_outlined,
             onPressed: () {
-              int resultCount;
-              if (value > 1) {
-                resultCount = value - 1;
-              } else {
-                resultCount = value;
-              }
+              if (value == 1 && !isRemovable) return;
+
+              int resultCount = value - 1;
               result(resultCount);
             },
           ),
