@@ -23,3 +23,9 @@ const tSearchHint = 'Pesquise aqui...';
 const tAddCart = 'Adicionar ao Carrinho';
 const tTotalCart = 'Valor Total';
 const tFinishOrder = 'Finalizar a compra';
+
+const tOrderConfirmationDialogTitle = 'Confirmação';
+const tOrderConfirmationDialogMessage = 'Deseja realmente finalizar a compra?';
+const tOrderConfirmationDialogYes = 'Sim';
+const tOrderConfirmationDialogNo = 'Não';
+

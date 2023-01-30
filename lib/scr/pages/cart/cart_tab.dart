@@ -26,10 +26,32 @@ class _CartTabState extends State<CartTab> {
 
   double cartTotalPrice() {
     double total = 0;
-    for ( var item in app_data.cartItems) {
+    for (var item in app_data.cartItems) {
       total += item.totalPrice();
     }
     return total;
+  }
+
+  Future<bool?> showOrderConfirmation() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(tOrderConfirmationDialogTitle),
+          content: const Text(tOrderConfirmationDialogMessage),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: const Text(tOrderConfirmationDialogNo),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text(tOrderConfirmationDialogYes),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -51,8 +73,9 @@ class _CartTabState extends State<CartTab> {
               child: ListView.builder(
                   itemCount: app_data.cartItems.length,
                   itemBuilder: (_, index) {
-                    return CartTile(cartItem: app_data.cartItems[index],
-                    remove: removeItemFromCart,
+                    return CartTile(
+                      cartItem: app_data.cartItems[index],
+                      remove: removeItemFromCart,
                     );
                   }),
             ),
@@ -96,7 +119,9 @@ class _CartTabState extends State<CartTab> {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(tBorderRadius))),
-                    onPressed: () {},
+                    onPressed: () {
+                      showOrderConfirmation();
+                    },
                     label: const Text(
                       tFinishOrder,
                       style: TextStyle(
@@ -116,5 +141,9 @@ class _CartTabState extends State<CartTab> {
         ],
       ),
     );
+
   }
+
+
+
 }
