@@ -37,15 +37,27 @@ class _CartTabState extends State<CartTab> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           title: const Text(tOrderConfirmationDialogTitle),
           content: const Text(tOrderConfirmationDialogMessage),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
               child: const Text(tOrderConfirmationDialogNo),
             ),
             ElevatedButton(
-              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
               child: const Text(tOrderConfirmationDialogYes),
             ),
           ],
@@ -119,8 +131,9 @@ class _CartTabState extends State<CartTab> {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(tBorderRadius))),
-                    onPressed: () {
-                      showOrderConfirmation();
+                    onPressed: () async {
+                      bool? result = await showOrderConfirmation();
+                      print(result);
                     },
                     label: const Text(
                       tFinishOrder,
