@@ -25,89 +25,7 @@ class _ProfileTabState extends State<ProfileTab> {
     filter: {'#': RegExp(r'[0-9]')},
   );
 
-  Future<bool?> updatePassword() {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        tProfileSave,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    // password
-                    const CustomTextField(
-                      isSecret: true,
-                      icon: Icons.lock,
-                      label: tPasswordOld,
-                    ),
-                    // new password
-                    const CustomTextField(
-                      isSecret: true,
-                      icon: Icons.lock_outline,
-                      label: tPasswordNew,
-                    ),
-                    // New password confirmation
-                    const CustomTextField(
-                      isSecret: true,
-                      icon: Icons.lock_outline,
-                      label: tPasswordNewConfirm,
-                    ),
-                    // button save
-                    SizedBox(
-                      height: tHeightSizeBox,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(tBorderRadius))),
-                        onPressed: () {
-                          updatePassword();
-                        },
-                        child: const Text(
-                          tProfileSave,
-                          style: TextStyle(
-                            fontSize: tFontSizeButton,
-                            color: tColorsLight,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: 5,
-                right: 5,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.close),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +97,89 @@ class _ProfileTabState extends State<ProfileTab> {
           ),
         ],
       ),
+    );
+  }
+  Future<bool?> updatePassword() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                        tProfileSave,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // password
+                    const CustomTextField(
+                      isSecret: true,
+                      icon: Icons.lock,
+                      label: tPasswordOld,
+                    ),
+                    // new password
+                    const CustomTextField(
+                      isSecret: true,
+                      icon: Icons.lock_outline,
+                      label: tPasswordNew,
+                    ),
+                    // New password confirmation
+                    const CustomTextField(
+                      isSecret: true,
+                      icon: Icons.lock_outline,
+                      label: tPasswordNewConfirm,
+                    ),
+                    // button save
+                    SizedBox(
+                      height: tHeightSizeBox,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(tBorderRadius))),
+                        onPressed: () {
+                          updatePassword();
+                        },
+                        child: const Text(
+                          tProfileSave,
+                          style: TextStyle(
+                            fontSize: tFontSizeButton,
+                            color: tColorsLight,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
