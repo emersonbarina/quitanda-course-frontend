@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/pages/cart/cart_tab.dart';
+import 'package:quitanda/scr/pages/profile/profile_tab.dart';
 
 import '../home/home_tab.dart';
 
@@ -24,9 +25,9 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,
         children: [
           const HomeTab(),
-          CartTab(),
+          const CartTab(),
           Container(color: Colors.blue,),
-          Container(color: Colors.green,),
+          ProfileTab(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

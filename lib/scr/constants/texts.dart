@@ -18,6 +18,8 @@ const tNavHome = 'Home';
 const tNavCart = 'Carrinho';
 const tNavOrder = 'Pedidos';
 const tNavProfile = 'Perfil';
+const tProfile = 'Perfil do Usuário';
+const tProfileSave = 'Atualizar os dados';
 
 const tSearchHint = 'Pesquise aqui...';
 const tAddCart = 'Adicionar ao Carrinho';
