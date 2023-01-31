@@ -5,7 +5,7 @@ import 'package:quitanda/scr/constants/texts.dart';
 import '../../components/custom_text_field.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
-
+import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
 class ProfileTab extends StatelessWidget {
   ProfileTab({Key? key}) : super(key: key);
@@ -44,29 +44,39 @@ class ProfileTab extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
         children: [
-          const CustomTextField(
+          CustomTextField(
+            initialValue: app_data.user.email,
             icon: Icons.email_outlined,
             label: tEmail,
           ),
-          const CustomTextField(
+          CustomTextField(
+            readOnly: true,
+            initialValue: app_data.user.password,
             isSecret: true,
             icon: Icons.lock_outlined,
             label: tPassword,
           ),
-          const CustomTextField(
+          CustomTextField(
+            readOnly: true,
+            initialValue: app_data.user.name,
             icon: Icons.person_outlined,
             label: tFullName,
           ),
           CustomTextField(
+            readOnly: true,
+            initialValue: app_data.user.phone,
             inputFormatters: [phoneFormatter],
             icon: Icons.phone_outlined,
             label: tPhone,
           ),
           CustomTextField(
+            readOnly: true,
+            initialValue: app_data.user.cpf,
             inputFormatters: [cpfFormatter],
             icon: Icons.file_copy_outlined,
             label: tCPF,
           ),
+
           SizedBox(
             height: tHeightSizeBox,
             child: ElevatedButton(
@@ -88,4 +98,6 @@ class ProfileTab extends StatelessWidget {
       ),
     );
   }
+
+
 }

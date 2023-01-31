@@ -1,6 +1,6 @@
 import 'package:quitanda/scr/models/cart_item_model.dart';
 import 'package:quitanda/scr/models/item_model.dart';
-import 'package:quitanda/scr/models/user_mode.dart';
+import 'package:quitanda/scr/models/user_model.dart';
 
 ItemModel apple = ItemModel(
   description:
