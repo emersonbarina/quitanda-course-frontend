@@ -30,30 +30,65 @@ class _ProfileTabState extends State<ProfileTab> {
       context: context,
       builder: (context) {
         return Dialog(
-          child: Column(
-            children: [
-              CustomTextField(
-                initialValue: app_data.user.password,
-                isSecret: true,
-                icon: Icons.lock_outlined,
-                label: tPasswordOld,
-              ),
-
-              CustomTextField(
-                initialValue: app_data.user.password,
-                isSecret: true,
-                icon: Icons.lock_outlined,
-                label: tPasswordNew,
-              ),
-
-              CustomTextField(
-                initialValue: app_data.user.password,
-                isSecret: true,
-                icon: Icons.lock_outlined,
-                label: tPasswordNewConfirm,
-              ),
-
-            ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
+                    tProfileSave,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // password
+                const CustomTextField(
+                  isSecret: true,
+                  icon: Icons.lock,
+                  label: tPasswordOld,
+                ),
+                // new password
+                const CustomTextField(
+                  isSecret: true,
+                  icon: Icons.lock_outline,
+                  label: tPasswordNew,
+                ),
+                // New password confirmation
+                const CustomTextField(
+                  isSecret: true,
+                  icon: Icons.lock_outline,
+                  label: tPasswordNewConfirm,
+                ),
+                // button save
+                SizedBox(
+                  height: tHeightSizeBox,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(tBorderRadius))),
+                    onPressed: () {
+                      updatePassword();
+                    },
+                    child: const Text(
+                      tProfileSave,
+                      style: TextStyle(
+                        fontSize: tFontSizeButton,
+                        color: tColorsLight,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
