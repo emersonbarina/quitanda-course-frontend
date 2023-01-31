@@ -7,17 +7,58 @@ import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
-class ProfileTab extends StatelessWidget {
-  ProfileTab({Key? key}) : super(key: key);
+class ProfileTab extends StatefulWidget {
+  const ProfileTab({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends State<ProfileTab> {
   final cpfFormatter = MaskTextInputFormatter(
     mask: '###.###.###-##',
     filter: {'#': RegExp(r'[0-9]')},
   );
+
   final phoneFormatter = MaskTextInputFormatter(
     mask: '(##) # ####-####',
     filter: {'#': RegExp(r'[0-9]')},
   );
+
+  Future<bool?> updatePassword() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          child: Column(
+            children: [
+              CustomTextField(
+                initialValue: app_data.user.password,
+                isSecret: true,
+                icon: Icons.lock_outlined,
+                label: tPasswordOld,
+              ),
+
+              CustomTextField(
+                initialValue: app_data.user.password,
+                isSecret: true,
+                icon: Icons.lock_outlined,
+                label: tPasswordNew,
+              ),
+
+              CustomTextField(
+                initialValue: app_data.user.password,
+                isSecret: true,
+                icon: Icons.lock_outlined,
+                label: tPasswordNewConfirm,
+              ),
+
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +92,6 @@ class ProfileTab extends StatelessWidget {
           ),
           CustomTextField(
             readOnly: true,
-            initialValue: app_data.user.password,
-            isSecret: true,
-            icon: Icons.lock_outlined,
-            label: tPassword,
-          ),
-          CustomTextField(
-            readOnly: true,
             initialValue: app_data.user.name,
             icon: Icons.person_outlined,
             label: tFullName,
@@ -76,15 +110,15 @@ class ProfileTab extends StatelessWidget {
             icon: Icons.file_copy_outlined,
             label: tCPF,
           ),
-
           SizedBox(
             height: tHeightSizeBox,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.circular(tBorderRadius))),
-              onPressed: () {},
+                      borderRadius: BorderRadius.circular(tBorderRadius))),
+              onPressed: () {
+                updatePassword();
+              },
               child: const Text(
                 tProfileSave,
                 style: TextStyle(
@@ -98,6 +132,4 @@ class ProfileTab extends StatelessWidget {
       ),
     );
   }
-
-
 }

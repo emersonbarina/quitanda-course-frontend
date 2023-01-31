@@ -13,13 +13,16 @@ const tPassword = 'Senha';
 const tFullName = 'Nome';
 const tPhone = 'Telefone';
 const tCPF = 'CPF';
+const tPasswordOld = 'Senha Atual';
+const tPasswordNew = 'Nova senha';
+const tPasswordNewConfirm = 'Confirmar Nova Senha';
 
 const tNavHome = 'Home';
 const tNavCart = 'Carrinho';
 const tNavOrder = 'Pedidos';
 const tNavProfile = 'Perfil';
 const tProfile = 'Perfil do Usuário';
-const tProfileSave = 'Atualizar os dados';
+const tProfileSave = 'Atualizar a senha';
 
 const tSearchHint = 'Pesquise aqui...';
 const tAddCart = 'Adicionar ao Carrinho';

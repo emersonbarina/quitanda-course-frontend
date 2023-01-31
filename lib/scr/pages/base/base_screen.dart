@@ -27,7 +27,7 @@ class _BaseScreenState extends State<BaseScreen> {
           const HomeTab(),
           const CartTab(),
           Container(color: Colors.blue,),
-          ProfileTab(),
+          const ProfileTab(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
