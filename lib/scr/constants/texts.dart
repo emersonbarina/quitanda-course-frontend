@@ -34,3 +34,4 @@ const tOrderConfirmationDialogMessage = 'Deseja realmente finalizar a compra?';
 const tOrderConfirmationDialogYes = 'Sim';
 const tOrderConfirmationDialogNo = 'Não';
 
+const tTileOrder = 'Pedido';

@@ -2,6 +2,8 @@ import 'package:quitanda/scr/models/cart_item_model.dart';
 import 'package:quitanda/scr/models/item_model.dart';
 import 'package:quitanda/scr/models/user_model.dart';
 
+import '../models/order_model.dart';
+
 ItemModel apple = ItemModel(
   description:
       'A melhor maçã da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
@@ -98,3 +100,17 @@ UserModel user = UserModel(
   cpf: '999.999.999-99',
   password: '',
 );
+
+List<OrderModel> orders = [
+  OrderModel(
+    copyAndPaste: 'q1w2e3r4t5y6',
+    createdDateTime: DateTime.parse('2023-01-31 22:55:10.410'),
+    overdueDateTime: DateTime.parse('2023-01-31 23:55:10.410'),
+    id: 'asd6a54da6s2d1',
+    status: 'pending_payment',
+    total: 11.0,
+    items: [
+      CartItemModel(item: apple, quantity: 2),
+    ],
+  ),
+];
