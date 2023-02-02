@@ -43,11 +43,21 @@ class OrderTile extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: ListView(
-                      children: order.items.map((e) {
-                        return Container(
-                          height: 12,
-                          color: Colors.red,
-                          margin: const EdgeInsets.only(bottom: 10),
+                      children: order.items.map((orderItem) {
+                        return Row(
+                          children: [
+                            Text(
+                              '${orderItem.quantity} ${orderItem.item.unit} ',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(orderItem.item.itemName),
+                            ),
+                            Text(utilsServices
+                                .priceToCurrency(orderItem.totalPrice())),
+                          ],
                         );
                       }).toList(),
                     ),
