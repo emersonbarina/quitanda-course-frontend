@@ -34,6 +34,17 @@ class OrderTile extends StatelessWidget {
               ),
             ],
           ),
+          children: [
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  Expanded(child: Container(color: Colors.red,),),
+                  Expanded(child: Container(color: Colors.green,)),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
