@@ -34,6 +34,7 @@ class OrderTile extends StatelessWidget {
               ),
             ],
           ),
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           children: [
             SizedBox(
               height: 50,
