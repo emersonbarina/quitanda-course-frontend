@@ -111,6 +111,7 @@ List<OrderModel> orders = [
     total: 11.0,
     items: [
       CartItemModel(item: apple, quantity: 2),
+      CartItemModel(item: grape, quantity: 3),
     ],
   ),
 ];

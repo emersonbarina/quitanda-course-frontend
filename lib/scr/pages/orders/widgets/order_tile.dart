@@ -42,8 +42,14 @@ class OrderTile extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: Container(
-                      color: Colors.red,
+                    child: ListView(
+                      children: order.items.map((e) {
+                        return Container(
+                          height: 12,
+                          color: Colors.red,
+                          margin: const EdgeInsets.only(bottom: 10),
+                        );
+                      }).toList(),
                     ),
                   ),
                   Expanded(
