@@ -37,13 +37,16 @@ const tOrderConfirmationDialogNo = 'Não';
 const tTileOrder = 'Pedido';
 const tOrderTotal = 'Total';
 const tOrderButtonPaid = 'Ver QR Code Pix';
-
 const tOrderStatusPendingPayment  = 'Pedido confirmado';
+
 const tOrderStatusRefunded = 'Cancelado';
 const tOrderStatusPaid = 'Pagamento';
 const tOrderStatusPreparingPurchase = 'Preparando para envio';
 const tOrderStatusShipping = 'Enviado';
 const tOrderStatusDelivered = 'Entregue';
 const tOrderStatusOverdue = 'Pagamento PIX vencido';
+
+const tPaymentTile ='Pagamento com PIX';
+const tPaymentDate ='Vencimento';
 
 

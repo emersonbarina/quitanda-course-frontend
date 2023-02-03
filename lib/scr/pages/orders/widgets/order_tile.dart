@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda/scr/components/payment_dialog.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
@@ -101,12 +102,24 @@ class OrderTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return PaymentDialog(
+                        order: order,
+                      );
+                    },
+                  );
+                },
                 icon: Image.asset(
                   'assets/common_images/pix.png',
                   height: 18,
                 ),
-                label: const Text(tOrderButtonPaid, style: TextStyle(color: tColorsLight, fontSize: 20),),
+                label: const Text(
+                  tOrderButtonPaid,
+                  style: TextStyle(color: tColorsLight, fontSize: 20),
+                ),
               ),
             ),
           ],
