@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/models/order_model.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
@@ -53,6 +54,15 @@ class PaymentDialog extends StatelessWidget {
             ),
             // Botão copia e cola
             OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  side: const BorderSide(
+                    width: 2,
+                    color: tColorsPrimary,
+                  ),
+                ),
                 onPressed: () {},
                 icon: const Icon(
                   Icons.copy,
