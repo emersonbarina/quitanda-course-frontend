@@ -8,6 +8,8 @@ import 'package:quitanda/scr/services/utils_services.dart';
 
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
+import '../../components/payment_dialog.dart';
+
 class CartTab extends StatefulWidget {
   const CartTab({Key? key}) : super(key: key);
 
@@ -133,7 +135,18 @@ class _CartTabState extends State<CartTab> {
                                 BorderRadius.circular(tBorderRadius))),
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      print(result);
+
+                      if (result ?? false) {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(
+                              order: app_data.orders.first,
+                            );
+                          },
+                        );
+                      }
+
                     },
                     label: const Text(
                       tFinishOrder,
