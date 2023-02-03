@@ -4,6 +4,7 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/models/cart_item_model.dart';
 import 'package:quitanda/scr/models/order_model.dart';
+import 'package:quitanda/scr/pages/orders/widgets/order_status.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 
 class OrderTile extends StatelessWidget {
@@ -38,7 +39,7 @@ class OrderTile extends StatelessWidget {
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           children: [
             SizedBox(
-              height: 50,
+              height: 100,
               child: Row(
                 children: [
                   Expanded(
@@ -52,10 +53,16 @@ class OrderTile extends StatelessWidget {
                       }).toList(),
                     ),
                   ),
+                  const VerticalDivider(
+                    color: tColorsPrimary,
+                    thickness: 2,
+                    width: 8,
+                  ),
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      color: Colors.green,
+                    child: OrderStatus(
+                      status: order.status,
+                      isOverdue: order.overdueDateTime.isBefore(DateTime.now()),
                     ),
                   ),
                 ],
