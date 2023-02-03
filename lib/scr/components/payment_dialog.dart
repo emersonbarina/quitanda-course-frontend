@@ -18,64 +18,78 @@ class PaymentDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              tPaymentTile,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            // QR Code
-            QrImage(
-              data: "1234567890",
-              version: QrVersions.auto,
-              size: 200.0,
-            ),
-
-            // Vencimento
-            Text(
-              '$tPaymentDate: ${utilsServices.formatDateTime(order.overdueDateTime)}',
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-            ),
-            // Total
-            Text(
-              '$tOrderTotal ${utilsServices.priceToCurrency(order.total)}',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            // Botão copia e cola
-            OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  side: const BorderSide(
-                    width: 2,
-                    color: tColorsPrimary,
-                  ),
-                ),
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.copy,
-                  size: 15,
-                ),
-                label: const Text(
-                  tPaymentButtonCopy,
+      child: Stack(
+        children: [
+          // Conteúdo
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  tPaymentTile,
                   style: TextStyle(
-                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
-                ))
-          ],
-        ),
+                ),
+                // QR Code
+                QrImage(
+                  data: "1234567890",
+                  version: QrVersions.auto,
+                  size: 200.0,
+                ),
+
+                // Vencimento
+                Text(
+                  '$tPaymentDate: ${utilsServices.formatDateTime(order.overdueDateTime)}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+                // Total
+                Text(
+                  '$tOrderTotal ${utilsServices.priceToCurrency(order.total)}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // Botão copia e cola
+                OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      side: const BorderSide(
+                        width: 2,
+                        color: tColorsPrimary,
+                      ),
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.copy,
+                      size: 15,
+                    ),
+                    label: const Text(
+                      tPaymentButtonCopy,
+                      style: TextStyle(
+                        fontSize: 13,
+                      ),
+                    ))
+              ],
+            ),
+          ),
+
+          Positioned(
+            top: 0,
+            right: 0,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.close),
+            ),
+          ),
+        ],
       ),
     );
   }
