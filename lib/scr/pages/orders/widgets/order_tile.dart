@@ -38,7 +38,7 @@ class OrderTile extends StatelessWidget {
             ],
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          expandedCrossAxisAlignment: CrossAxisAlignment.start,
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             IntrinsicHeight(
               child: Row(
@@ -93,12 +93,17 @@ class OrderTile extends StatelessWidget {
             ),
             // Botão de Pagamento
             ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
               onPressed: () {},
               icon: Image.asset(
                 'assets/common_images/pix.png',
                 height: 18,
               ),
-              label: const Text(tOrderButtonPaid),
+              label: const Text(tOrderButtonPaid, style: TextStyle(color: tColorsLight, fontSize: 20),),
             ),
           ],
         ),
