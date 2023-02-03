@@ -92,18 +92,22 @@ class OrderTile extends StatelessWidget {
               ),
             ),
             // Botão de Pagamento
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            Visibility(
+              visible: order.status == 'pending_payment',
+              //replacement: const Text('Test'),
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
+                onPressed: () {},
+                icon: Image.asset(
+                  'assets/common_images/pix.png',
+                  height: 18,
+                ),
+                label: const Text(tOrderButtonPaid, style: TextStyle(color: tColorsLight, fontSize: 20),),
               ),
-              onPressed: () {},
-              icon: Image.asset(
-                'assets/common_images/pix.png',
-                height: 18,
-              ),
-              label: const Text(tOrderButtonPaid, style: TextStyle(color: tColorsLight, fontSize: 20),),
             ),
           ],
         ),
