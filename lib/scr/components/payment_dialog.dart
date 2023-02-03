@@ -52,6 +52,18 @@ class PaymentDialog extends StatelessWidget {
               ),
             ),
             // Botão copia e cola
+            OutlinedButton.icon(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.copy,
+                  size: 15,
+                ),
+                label: const Text(
+                  tPaymentButtonCopy,
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
+                ))
           ],
         ),
       ),

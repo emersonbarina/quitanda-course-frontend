@@ -36,7 +36,7 @@ const tOrderConfirmationDialogNo = 'Não';
 
 const tTileOrder = 'Pedido';
 const tOrderTotal = 'Total';
-const tOrderButtonPaid = 'Ver QR Code Pix';
+const tOrderButtonPaid = 'Ver QR Code PIX';
 const tOrderStatusPendingPayment  = 'Pedido confirmado';
 
 const tOrderStatusRefunded = 'Cancelado';
@@ -48,5 +48,6 @@ const tOrderStatusOverdue = 'Pagamento PIX vencido';
 
 const tPaymentTile ='Pagamento com PIX';
 const tPaymentDate ='Vencimento';
+const tPaymentButtonCopy ='Copiar código PIX';
 
 
