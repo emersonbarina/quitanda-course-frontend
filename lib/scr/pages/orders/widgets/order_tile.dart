@@ -38,6 +38,7 @@ class OrderTile extends StatelessWidget {
             ],
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IntrinsicHeight(
               child: Row(
@@ -74,18 +75,30 @@ class OrderTile extends StatelessWidget {
             // Total
             Text.rich(
               TextSpan(
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
                 children: [
                   const TextSpan(
-                    text: tOrderTotal,
+                    text: '$tOrderTotal ',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   TextSpan(
-                    text: order.total.toString(),
+                    text: utilsServices.priceToCurrency(order.total),
                   ),
-                ]
+                ],
               ),
+            ),
+            // Botão de Pagamento
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Image.asset(
+                'assets/common_images/pix.png',
+                height: 18,
+              ),
+              label: const Text(tOrderButtonPaid),
             ),
           ],
         ),

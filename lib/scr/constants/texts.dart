@@ -36,6 +36,7 @@ const tOrderConfirmationDialogNo = 'Não';
 
 const tTileOrder = 'Pedido';
 const tOrderTotal = 'Total';
+const tOrderButtonPaid = 'Ver QR Code Pix';
 
 const tOrderStatusPendingPayment  = 'Pedido confirmado';
 const tOrderStatusRefunded = 'Cancelado';
