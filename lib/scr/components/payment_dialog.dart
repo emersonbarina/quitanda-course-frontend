@@ -19,6 +19,7 @@ class PaymentDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
+        alignment: Alignment.center,
         children: [
           // Conteúdo
           Padding(
@@ -85,7 +86,9 @@ class PaymentDialog extends StatelessWidget {
             top: 0,
             right: 0,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               icon: const Icon(Icons.close),
             ),
           ),
