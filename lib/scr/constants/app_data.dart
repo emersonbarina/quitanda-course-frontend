@@ -107,7 +107,7 @@ List<OrderModel> orders = [
     createdDateTime: DateTime.parse('2023-02-15 22:55:10.410'),
     overdueDateTime: DateTime.parse('2023-02-15 23:55:10.410'),
     id: 'asd6a54da6s2d1',
-    status: 'pending_payment',
+    status: 'preparing_purchase',
     total: 11.0,
     items: [
       CartItemModel(item: apple, quantity: 2),
@@ -117,8 +117,8 @@ List<OrderModel> orders = [
 
   OrderModel(
     copyAndPaste: 'q1w2e3r4t5y6',
-    createdDateTime: DateTime.parse('2023-01-31 22:55:10.410'),
-    overdueDateTime: DateTime.parse('2023-01-31 23:55:10.410'),
+    createdDateTime: DateTime.parse('2023-02-01 22:55:10.410'),
+    overdueDateTime: DateTime.parse('2023-02-11 23:55:10.410'),
     id: 'asd7a54da6s2d1',
     status: 'pending_payment',
     total: 10.0,
@@ -132,7 +132,7 @@ List<OrderModel> orders = [
     createdDateTime: DateTime.parse('2023-02-15 22:55:10.410'),
     overdueDateTime: DateTime.parse('2023-02-15 23:55:10.410'),
     id: 'asd7a65da7s2d5',
-    status: 'refunded',
+    status: 'delivered',
     total: 20.0,
     items: [
       CartItemModel(item: mango, quantity: 1),

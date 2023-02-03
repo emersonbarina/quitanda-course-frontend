@@ -47,25 +47,25 @@ class OrderStatus extends StatelessWidget {
           ),
         ] else ...[
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 2,
             tile: tOrderStatusPaid,
           ),
           const _CustomDivider(),
 
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 3,
             tile: tOrderStatusPreparingPurchase,
           ),
           const _CustomDivider(),
 
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 4,
             tile: tOrderStatusShipping,
           ),
           const _CustomDivider(),
 
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus == 5,
             tile: tOrderStatusDelivered,
           ),
         ]
