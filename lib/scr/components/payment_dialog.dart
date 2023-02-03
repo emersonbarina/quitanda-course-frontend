@@ -14,40 +14,46 @@ class PaymentDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text(
-            tPaymentTile,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              tPaymentTile,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
-          ),
-          // QR Code
-          QrImage(
-            data: "1234567890",
-            version: QrVersions.auto,
-            size: 200.0,
-          ),
+            // QR Code
+            QrImage(
+              data: "1234567890",
+              version: QrVersions.auto,
+              size: 200.0,
+            ),
 
-          // Vencimento
-          Text(
-            '$tPaymentDate: ${utilsServices.formatDateTime(order.overdueDateTime)}',
-            style: const TextStyle(
-              fontSize: 12,
+            // Vencimento
+            Text(
+              '$tPaymentDate: ${utilsServices.formatDateTime(order.overdueDateTime)}',
+              style: const TextStyle(
+                fontSize: 12,
+              ),
             ),
-          ),
-          // Total
-          Text(
-            '$tOrderTotal ${utilsServices.priceToCurrency(order.total)}',
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+            // Total
+            Text(
+              '$tOrderTotal ${utilsServices.priceToCurrency(order.total)}',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          // Botão copia e cola
-        ],
+            // Botão copia e cola
+          ],
+        ),
       ),
     );
   }
