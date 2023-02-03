@@ -35,6 +35,8 @@ const tOrderConfirmationDialogYes = 'Sim';
 const tOrderConfirmationDialogNo = 'Não';
 
 const tTileOrder = 'Pedido';
+const tOrderTotal = 'Total';
+
 const tOrderStatusPendingPayment  = 'Pedido confirmado';
 const tOrderStatusRefunded = 'Cancelado';
 const tOrderStatusPaid = 'Pagamento';
@@ -42,4 +44,5 @@ const tOrderStatusPreparingPurchase = 'Preparando para envio';
 const tOrderStatusShipping = 'Enviado';
 const tOrderStatusDelivered = 'Entregue';
 const tOrderStatusOverdue = 'Pagamento PIX vencido';
+
 

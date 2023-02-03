@@ -71,6 +71,22 @@ class OrderTile extends StatelessWidget {
                 ],
               ),
             ),
+            // Total
+            Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(
+                    text: tOrderTotal,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: order.total.toString(),
+                  ),
+                ]
+              ),
+            ),
           ],
         ),
       ),
