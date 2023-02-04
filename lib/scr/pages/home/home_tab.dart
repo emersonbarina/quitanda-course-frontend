@@ -26,8 +26,7 @@ class _HomeTabState extends State<HomeTab> {
     await runAddToCardAnimation(gkImage);
 
     setState(() {
-      cartKey.currentState!
-          .runCartAnimation((++_cartQuantityItems).toString());
+      cartKey.currentState!.runCartAnimation((++_cartQuantityItems).toString());
     });
   }
 
@@ -73,7 +72,6 @@ class _HomeTabState extends State<HomeTab> {
                 onTap: () {},
                 child: badges.Badge(
                   badgeContent: Text(
-
                     _cartQuantityItems.toString(),
                     style: const TextStyle(color: tColorsLight, fontSize: 12),
                   ),
@@ -87,6 +85,15 @@ class _HomeTabState extends State<HomeTab> {
                     icon: const Icon(
                       Icons.shopping_cart,
                       color: tColorsPrimary,
+                    ),
+                    //  badge options of AddToCartIcon, I'm using badges.Badge
+                    badgeOptions: const BadgeOptions(
+                      active: false,
+                      backgroundColor: Colors.red,
+                      fontSize: 12,
+                      foregroundColor: tColorsLight,
+                      width: 15,
+                      height: 15,
                     ),
                   ),
                 ),
