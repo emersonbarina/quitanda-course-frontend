@@ -9,9 +9,13 @@ class ItemTile extends StatelessWidget {
   ItemTile({
     Key? key,
     required this.item,
+    required this.cartAnimationMethod,
   }) : super(key: key);
 
   final ItemModel item;
+  final void Function(GlobalKey) cartAnimationMethod;
+
+  final GlobalKey imageGk = GlobalKey();
 
   final UtilsServices utilsServices = UtilsServices();
 
@@ -39,9 +43,14 @@ class ItemTile extends StatelessWidget {
                 children: [
                   //image
                   Expanded(
-                    child: Hero(
-                      tag: item.imgUrl ,
-                      child: Image.asset(item.imgUrl),
+                    child: Container(
+                      key: imageGk,
+                      child: Hero(
+                        tag: item.imgUrl,
+                        child: Image.asset(
+                          item.imgUrl,
+                        ),
+                      ),
                     ),
                   ),
 
@@ -85,7 +94,9 @@ class ItemTile extends StatelessWidget {
           top: 4,
           right: 4,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              cartAnimationMethod(imageGk);
+            },
             child: Container(
               height: 40,
               width: 35,
