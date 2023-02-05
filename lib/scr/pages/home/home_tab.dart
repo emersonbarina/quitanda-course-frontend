@@ -52,22 +52,17 @@ class _HomeTabState extends State<HomeTab> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: GestureDetector(
-            onTap: () {
-              utilsServices.showToast(message: 'Teste Mensagem', isError: true);
-            },
-            child: const Text.rich(
-              TextSpan(
-                style: TextStyle(
-                  fontSize: tFontSizeAppBar,
-                ),
-                children: [
-                  TextSpan(
-                      text: tAppTitle1, style: TextStyle(color: tColorsPrimary)),
-                  TextSpan(
-                      text: tAppTitle2, style: TextStyle(color: tColorsDark)),
-                ],
+          title: const Text.rich(
+            TextSpan(
+              style: TextStyle(
+                fontSize: tFontSizeAppBar,
               ),
+              children: [
+                TextSpan(
+                    text: tAppTitle1, style: TextStyle(color: tColorsPrimary)),
+                TextSpan(
+                    text: tAppTitle2, style: TextStyle(color: tColorsDark)),
+              ],
             ),
           ),
           actions: [
