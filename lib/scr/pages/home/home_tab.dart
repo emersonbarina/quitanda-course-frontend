@@ -1,6 +1,7 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quitanda/scr/components/category_tile.dart';
 import 'package:quitanda/scr/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
@@ -49,17 +50,30 @@ class _HomeTabState extends State<HomeTab> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text.rich(
-            TextSpan(
-              style: TextStyle(
-                fontSize: tFontSizeAppBar,
+          title: GestureDetector(
+            onTap: () {
+              Fluttertoast.showToast(
+                  msg: "This is Center Short Toast",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 3,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+            },
+            child: const Text.rich(
+              TextSpan(
+                style: TextStyle(
+                  fontSize: tFontSizeAppBar,
+                ),
+                children: [
+                  TextSpan(
+                      text: tAppTitle1, style: TextStyle(color: tColorsPrimary)),
+                  TextSpan(
+                      text: tAppTitle2, style: TextStyle(color: tColorsDark)),
+                ],
               ),
-              children: [
-                TextSpan(
-                    text: tAppTitle1, style: TextStyle(color: tColorsPrimary)),
-                TextSpan(
-                    text: tAppTitle2, style: TextStyle(color: tColorsDark)),
-              ],
             ),
           ),
           actions: [
