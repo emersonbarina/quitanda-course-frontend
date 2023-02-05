@@ -1,13 +1,13 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quitanda/scr/components/category_tile.dart';
 import 'package:quitanda/scr/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
+import 'package:quitanda/scr/services/utils_services.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -31,6 +31,8 @@ class _HomeTabState extends State<HomeTab> {
     });
   }
 
+  final UtilsServices utilsServices = UtilsServices();
+
   @override
   Widget build(BuildContext context) {
     return AddToCartAnimation(
@@ -52,15 +54,7 @@ class _HomeTabState extends State<HomeTab> {
           elevation: 0,
           title: GestureDetector(
             onTap: () {
-              Fluttertoast.showToast(
-                  msg: "This is Center Short Toast",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 3,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0
-              );
+              utilsServices.showToast(message: 'Teste Mensagem', isError: true);
             },
             child: const Text.rich(
               TextSpan(
