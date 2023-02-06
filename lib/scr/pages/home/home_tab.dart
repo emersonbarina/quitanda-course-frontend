@@ -2,12 +2,12 @@ import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/components/category_tile.dart';
+import 'package:quitanda/scr/components/custom_shimmer.dart';
 import 'package:quitanda/scr/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
-import 'package:quitanda/scr/services/utils_services.dart';
 
 import '../../components/app_name_widget.dart';
 
@@ -33,7 +33,7 @@ class _HomeTabState extends State<HomeTab> {
     });
   }
 
-  final UtilsServices utilsServices = UtilsServices();
+  bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
@@ -154,23 +154,40 @@ class _HomeTabState extends State<HomeTab> {
 
             // Grid
             Expanded(
-              child: GridView.builder(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 9 / 11.5,
-                ),
-                itemCount: app_data.items.length,
-                itemBuilder: (_, index) {
-                  return ItemTile(
-                    item: app_data.items[index],
-                    cartAnimationMethod: itemSelectedCartAnimations,
-                  );
-                },
-              ),
+              child: !isLoading
+                  ? GridView.builder(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      physics: const BouncingScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 9 / 11.5,
+                      ),
+                      itemCount: app_data.items.length,
+                      itemBuilder: (_, index) {
+                        return ItemTile(
+                          item: app_data.items[index],
+                          cartAnimationMethod: itemSelectedCartAnimations,
+                        );
+                      },
+                    )
+                  : GridView.count(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      physics: const BouncingScrollPhysics(),
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 9 / 11.5,
+                      children: [
+                        CustomShimmer(
+                          height: double.infinity,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(tBorderRadius),
+                        ),
+                      ],
+                    ),
             ),
           ],
         ),
@@ -178,4 +195,3 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 }
-
