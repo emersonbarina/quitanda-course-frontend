@@ -19,7 +19,7 @@ class CategoryTile extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: InkWell(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(tBorderRadiusCategory),
         onTap: onPressed,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 4),
