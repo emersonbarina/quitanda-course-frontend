@@ -93,22 +93,28 @@ class ItemTile extends StatelessWidget {
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {
-              cartAnimationMethod(imageGk);
-            },
-            child: Container(
-              height: 40,
-              width: 35,
-              decoration: const BoxDecoration(
-                  color: tColorsPrimary,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      topRight: Radius.circular(tBorderRadius))),
-              child: const Icon(
-                Icons.add_shopping_cart_outlined,
-                color: tColorsLight,
-                size: 20,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              topRight: Radius.circular(tBorderRadius),
+            ),
+            child: Material(
+              child: InkWell(
+                onTap: () {
+                  cartAnimationMethod(imageGk);
+                },
+                child: Ink(
+                  height: 40,
+                  width: 35,
+                  decoration: const BoxDecoration(
+                    color: tColorsPrimary,
+                  ),
+                  child: Icon(
+                    Icons.add_shopping_cart_outlined,
+                    color: tColorsLight,
+                    size: 20,
+                  ),
+                ),
               ),
             ),
           ),
