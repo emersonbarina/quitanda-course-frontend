@@ -9,6 +9,8 @@ import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 import 'package:quitanda/scr/services/utils_services.dart';
 
+import '../../components/app_name_widget.dart';
+
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
 
@@ -52,18 +54,8 @@ class _HomeTabState extends State<HomeTab> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text.rich(
-            TextSpan(
-              style: TextStyle(
-                fontSize: tFontSizeAppBar,
-              ),
-              children: [
-                TextSpan(
-                    text: tAppTitle1, style: TextStyle(color: tColorsPrimary)),
-                TextSpan(
-                    text: tAppTitle2, style: TextStyle(color: tColorsDark)),
-              ],
-            ),
+          title: const AppNameWidget(
+            textSize: tFontSizeAppBar,
           ),
           actions: [
             Padding(
@@ -186,3 +178,4 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 }
+

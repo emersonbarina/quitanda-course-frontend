@@ -5,6 +5,7 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/pages/auth/sign_up_screen.dart';
 
+import '../../components/app_name_widget.dart';
 import '../../constants/colors.dart';
 import '../base/base_screen.dart';
 
@@ -29,26 +30,10 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // AppName
-                    const Text.rich(
-                      TextSpan(
-                        style: TextStyle(fontSize: tFontSizeHeader),
-                        children: [
-                          TextSpan(
-                            text: tAppTitle1,
-                            style: TextStyle(
-                              color: tColorsLight,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: tAppTitle2,
-                            style: TextStyle(
-                              color: tColorsDark,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                    const AppNameWidget(
+                      fontWeight: FontWeight.bold,
+                      textSize: tFontSizeHeader,
+                      colorAppTitleColor: tColorsLight,
                     ),
 
                     // Category
