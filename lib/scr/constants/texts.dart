@@ -1,4 +1,4 @@
-
+const tAppName = 'Mercadinho';
 const tAppTitle = 'Mercadinho';
 const tAppTitle1 = 'Mercado';
 const tAppTitle2 = '++';

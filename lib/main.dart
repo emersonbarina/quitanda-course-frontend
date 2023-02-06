@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
+import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/pages/auth/sign_in_screen.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: tAppName,
       theme: ThemeData(
         primarySwatch: tColorsPrimary,
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
