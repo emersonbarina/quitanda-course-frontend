@@ -8,7 +8,7 @@ import 'package:quitanda/scr/services/utils_services.dart';
 import '../../constants/sizes.dart';
 
 class ProductScreen extends StatefulWidget {
-  ProductScreen({Key? key, required this.item}) : super(key: key);
+  const ProductScreen({Key? key, required this.item}) : super(key: key);
 
   final ItemModel item;
 

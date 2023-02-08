@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/components/app_name_widget.dart';
 import 'package:quitanda/scr/constants/colors.dart';
-import 'package:quitanda/scr/pages/auth/sign_in_screen.dart';
+import 'package:get/get.dart';
+import 'package:quitanda/scr/page_route/app_pages.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,9 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), (){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (c) {
-        return const SignInScreen();
-      }));
+      Get.offNamed(PageRoutes.signInRoute);
     });
   }
   @override
