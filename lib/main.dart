@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
+import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
+import 'package:get/get.dart';
 
 void main() {
+  Get.put(AuthController());
+
   runApp(const MyApp());
 }
 

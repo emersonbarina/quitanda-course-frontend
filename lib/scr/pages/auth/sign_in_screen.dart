@@ -4,10 +4,10 @@ import 'package:quitanda/scr/components/custom_text_field.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
+import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
 import '../../components/app_name_widget.dart';
 import '../../constants/colors.dart';
 import 'package:get/get.dart';
-
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -71,7 +71,8 @@ class SignInScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 decoration: const BoxDecoration(
                   color: tColorsPrimaryBackGround,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(tBorderRadiusCircular)),
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(tBorderRadiusCircular)),
                 ),
                 child: Form(
                   key: _formKey,
@@ -83,9 +84,11 @@ class SignInScreen extends StatelessWidget {
                         controller: emailController,
                         icon: Icons.email_outlined,
                         label: tEmail,
-                        validator: (email){
-                          if(email == null || email.isEmpty) return tValidEmailEmpty;
-                          if(!email.isEmail) return tValidEmail;
+                        validator: (email) {
+                          if (email == null || email.isEmpty) {
+                            return tValidEmailEmpty;
+                          }
+                          if (!email.isEmail) return tValidEmail;
                           return null;
                         },
                       ),
@@ -95,8 +98,10 @@ class SignInScreen extends StatelessWidget {
                         icon: Icons.lock_outlined,
                         label: tPassword,
                         validator: (password) {
-                          if(password == null || password.isEmpty) return tValidPassEmpty;
-                          if(password.length < 7) return tValidPassLength;
+                          if (password == null || password.isEmpty) {
+                            return tValidPassEmpty;
+                          }
+                          if (password.length < 7) return tValidPassLength;
                           return null;
                         },
                       ),
@@ -104,30 +109,43 @@ class SignInScreen extends StatelessWidget {
                       // Login Button
                       SizedBox(
                         height: tHeightSizeBox,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(tBorderRadius))),
-                          onPressed: () {
-                            if(_formKey.currentState!.validate()){
-                              String email = emailController.text;
-                              String password = passwordController.text;
+                        child: GetX<AuthController>(
+                          builder: (authController) {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          tBorderRadius))),
+                              onPressed: authController.isLoading.value
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+                                      if (_formKey.currentState!.validate()) {
+                                        String email = emailController.text;
+                                        String password =
+                                            passwordController.text;
 
-                              print('Email: $email - Senha: $password');
-                            } else {
-                              print('Há campos inválidos!');
-                            }
-                            //Get.toNamed(PageRoutes.baseRoute);
+                                        authController.signIn(
+                                            email: email, password: password);
 
+                                        print(
+                                            'Email: $email - Senha: $password');
+                                      } else {
+                                        print('Há campos inválidos!');
+                                      }
+                                      //Get.toNamed(PageRoutes.baseRoute);
+                                    },
+                              child: authController.isLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : const Text(
+                                      tLogin,
+                                      style: TextStyle(
+                                        fontSize: tFontSizeButton,
+                                        color: tColorsLight,
+                                      ),
+                                    ),
+                            );
                           },
-                          child: const Text(
-                            tLogin,
-                            style: TextStyle(
-                              fontSize: tFontSizeButton,
-                              color: tColorsLight,
-                            ),
-                          ),
                         ),
                       ),
 
@@ -135,9 +153,7 @@ class SignInScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                           child: const Text('Esqueceu a senha?'),
                         ),
                       ),
@@ -153,8 +169,8 @@ class SignInScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: tSpacePadding),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: tSpacePadding),
                               child: Text('Ou'),
                             ),
                             Expanded(
@@ -172,7 +188,8 @@ class SignInScreen extends StatelessWidget {
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(tBorderRadius),
+                              borderRadius:
+                                  BorderRadius.circular(tBorderRadius),
                             ),
                             side: const BorderSide(
                               width: 2,
