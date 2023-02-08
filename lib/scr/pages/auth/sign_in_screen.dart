@@ -10,7 +10,9 @@ import 'package:get/get.dart';
 
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,99 +69,118 @@ class SignInScreen extends StatelessWidget {
                   color: tColorsPrimaryBackGround,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(tBorderRadiusCircular)),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Text Field e Button Login
-                    const CustomTextField(
-                      icon: Icons.email_outlined,
-                      label: tEmail,
-                    ),
-                    const CustomTextField(
-                      isSecret: true,
-                      icon: Icons.lock_outlined,
-                      label: tPassword,
-                    ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Text Field e Button Login
+                      CustomTextField(
+                        icon: Icons.email_outlined,
+                        label: tEmail,
+                        validator: (email){
+                          if(email == null || email.isEmpty) return tValidEmailEmpty;
+                          if(!email.isEmail) return tValidEmail;
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        isSecret: true,
+                        icon: Icons.lock_outlined,
+                        label: tPassword,
+                        validator: (password) {
+                          if(password == null || password.isEmpty) return tValidPassEmpty;
+                          if(password.length < 7) return tValidPassLength;
+                          return null;
+                        },
+                      ),
 
-                    // Login Button
-                    SizedBox(
-                      height: tHeightSizeBox,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
+                      // Login Button
+                      SizedBox(
+                        height: tHeightSizeBox,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(tBorderRadius))),
+                          onPressed: () {
+                            if(_formKey.currentState!.validate()){
+                              print('Todos os campos são válidos!');
+                            } else {
+                              print('Há campos inválidos!');
+                            }
+                            //Get.toNamed(PageRoutes.baseRoute);
+
+                          },
+                          child: const Text(
+                            tLogin,
+                            style: TextStyle(
+                              fontSize: tFontSizeButton,
+                              color: tColorsLight,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Forget Password
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+
+                          },
+                          child: const Text('Esqueceu a senha?'),
+                        ),
+                      ),
+
+                      // Divisor
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: tSpacePadding),
+                        child: Row(
+                          children: const [
+                            Expanded(
+                              child: Divider(
+                                thickness: 2,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: tSpacePadding),
+                              child: Text('Ou'),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                thickness: 2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // New account
+                      SizedBox(
+                        height: tHeightSizeBox,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(tBorderRadius))),
-                        onPressed: () {
-                          Get.toNamed(PageRoutes.baseRoute);
-                        },
-                        child: const Text(
-                          tLogin,
-                          style: TextStyle(
-                            fontSize: tFontSizeButton,
-                            color: tColorsLight,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // Forget Password
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-
-                        },
-                        child: const Text('Esqueceu a senha?'),
-                      ),
-                    ),
-
-                    // Divisor
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: tSpacePadding),
-                      child: Row(
-                        children: const [
-                          Expanded(
-                            child: Divider(
-                              thickness: 2,
+                              borderRadius: BorderRadius.circular(tBorderRadius),
+                            ),
+                            side: const BorderSide(
+                              width: 2,
+                              color: tColorsPrimary,
                             ),
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: tSpacePadding),
-                            child: Text('Ou'),
-                          ),
-                          Expanded(
-                            child: Divider(
-                              thickness: 2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // New account
-                    SizedBox(
-                      height: tHeightSizeBox,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(tBorderRadius),
-                          ),
-                          side: const BorderSide(
-                            width: 2,
-                            color: tColorsPrimary,
+                          onPressed: () {
+                            Get.toNamed(PageRoutes.signUpRoute);
+                          },
+                          child: const Text(
+                            'Criar conta',
+                            style: TextStyle(fontSize: tFontSizeButton),
                           ),
                         ),
-                        onPressed: () {
-                          Get.toNamed(PageRoutes.signUpRoute);
-                        },
-                        child: const Text(
-                          'Criar conta',
-                          style: TextStyle(fontSize: tFontSizeButton),
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

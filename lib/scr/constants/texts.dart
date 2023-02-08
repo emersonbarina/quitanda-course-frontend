@@ -16,6 +16,10 @@ const tCPF = 'CPF';
 const tPasswordOld = 'Senha Atual';
 const tPasswordNew = 'Nova senha';
 const tPasswordNewConfirm = 'Confirmar Nova Senha';
+const tValidEmailEmpty = 'Digite seu email';
+const tValidEmail = 'Digite um email válido';
+const tValidPassEmpty = 'Digite sua senha';
+const tValidPassLength = 'Digite um senha com pelo menos 7 caracteres.';
 
 const tNavHome = 'Home';
 const tNavCart = 'Carrinho';
