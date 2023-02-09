@@ -4,9 +4,14 @@ import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+
+void main() async {
   Get.put(AuthController());
+
+  // loading environment variables
+  await dotenv.load(fileName: ".env");
 
   runApp(const MyApp());
 }

@@ -128,8 +128,7 @@ class SignInScreen extends StatelessWidget {
                                         authController.signIn(
                                             email: email, password: password);
 
-                                        print(
-                                            'Email: $email - Senha: $password');
+                                        print('Email: $email - Senha: $password');
                                       } else {
                                         print('Há campos inválidos!');
                                       }

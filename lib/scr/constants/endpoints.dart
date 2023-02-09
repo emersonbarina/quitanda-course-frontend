@@ -1,9 +1,10 @@
+import 'package:quitanda/scr/constants/load_env.dart';
 
-const String baseUrl = 'https://parseapi.back4app.com/functions';
+String baseUrl = LoadEnv.baseUrl;
 
 abstract class EndPoints{
 
-  static const String signIn = '$baseUrl/login';
-  static const String signUp = '$baseUrl/signup';
+  static String signIn = '$baseUrl/login';
+  static String signUp = '$baseUrl/signup';
 
 }

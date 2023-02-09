@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:quitanda/scr/constants/load_env.dart';
 
 abstract class HttpMethod {
   static const String post = 'POST';
@@ -20,8 +21,8 @@ class HttpManager {
       ..addAll({
         'content-type': 'application/json',
         'accept': 'application/json',
-        'X-Parse-Application-Id': 'g1Oui3JqxnY4S1ykpQWHwEKGOe0dRYCPvPF4iykc',
-        'X-Parse-REST-API-Key': 'rFBKU8tk0m5ZlKES2CGieOaoYz6TgKxVMv8jRIsN',
+        'X-Parse-Application-Id': LoadEnv.appId,
+        'X-Parse-REST-API-Key': LoadEnv.apiKey,
       });
 
     Dio dio = Dio();
