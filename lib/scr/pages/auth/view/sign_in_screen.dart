@@ -5,8 +5,8 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
-import '../../components/app_name_widget.dart';
-import '../../constants/colors.dart';
+import '../../../components/app_name_widget.dart';
+import '../../../constants/colors.dart';
 import 'package:get/get.dart';
 
 class SignInScreen extends StatelessWidget {
