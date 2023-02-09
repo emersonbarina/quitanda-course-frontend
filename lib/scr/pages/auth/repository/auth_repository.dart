@@ -18,7 +18,7 @@ class AuthRepository {
     if(result['result'] != null){
       print('SignIn Ok');
       print(result['result']);
-      final user = UserModel.fromMap(result['result']);
+      final user = UserModel.fromJson(result['result']);
       print(user);
 
     } else {
