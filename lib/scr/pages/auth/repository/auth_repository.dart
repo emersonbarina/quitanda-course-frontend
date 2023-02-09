@@ -1,4 +1,5 @@
 import 'package:quitanda/scr/constants/endpoints.dart';
+import 'package:quitanda/scr/models/user_model.dart';
 import 'package:quitanda/scr/services/http_manager.dart';
 
 class AuthRepository {
@@ -17,6 +18,8 @@ class AuthRepository {
     if(result['result'] != null){
       print('SignIn Ok');
       print(result['result']);
+      final user = UserModel.fromMap(result['result']);
+      print(user);
 
     } else {
       print('SignIn Fail');
