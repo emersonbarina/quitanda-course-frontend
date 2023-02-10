@@ -9,6 +9,15 @@ import '../result/auth_result.dart';
 class AuthRepository {
   final HttpManager _httpManager = HttpManager();
 
+  AuthResult handleUserOrError(Map<dynamic, dynamic> result) {
+    if (result['result'] != null) {
+      final user = UserModel.fromJson(result['result']);
+      return AuthResult.success(user);
+    } else {
+      return AuthResult.error(auth_errors.authErrorsString(result['error']));
+    }
+  }
+
   Future<AuthResult> validateToken(String token) async {
     final result = await _httpManager.restRequest(
         url: EndPoints.validateToken,
@@ -30,12 +39,15 @@ class AuthRepository {
       'email': email,
       'password': password,
     });
+    return handleUserOrError(result);
+  }
 
-    if (result['result'] != null) {
-      final user = UserModel.fromJson(result['result']);
-      return AuthResult.success(user);
-    } else {
-      return AuthResult.error(auth_errors.authErrorsString(result['error']));
-    }
+  Future<AuthResult> signUp(UserModel user) async {
+    final result = await _httpManager.restRequest(
+      url: EndPoints.signUp,
+      method: HttpMethod.post,
+      body: user.toJson(),
+    );
+    return handleUserOrError(result);
   }
 }
