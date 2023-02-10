@@ -8,6 +8,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 void main() async {
+  //ensuring they have been initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
   Get.put(AuthController());
 
   // loading environment variables

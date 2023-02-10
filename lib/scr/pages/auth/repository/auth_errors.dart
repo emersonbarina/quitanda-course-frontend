@@ -5,6 +5,8 @@ String authErrorsString(String? code){
   switch ( code ) {
     case 'INVALID_CREDENTIALS':
       return tErrorInvalidCredentials;
+    case 'Invalid session token':
+      return tErrorInvalidCredentials;
     default:
       return tErrorUndefined;
   }
