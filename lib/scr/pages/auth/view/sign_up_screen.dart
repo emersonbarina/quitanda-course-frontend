@@ -5,6 +5,7 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 
 import '../../../components/custom_text_field.dart';
+import '../../../services/validators.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class SignUpScreen extends StatelessWidget {
     mask: '(##) # ####-####',
     filter: {'#': RegExp(r'[0-9]')},
   );
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,51 +55,64 @@ class SignUpScreen extends StatelessWidget {
                       color: tColorsPrimaryBackGround,
                       borderRadius: BorderRadius.vertical(top: Radius.circular(tBorderRadiusCircular)),
                     ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          // Text Field e Button Login
-                          const CustomTextField(
-                            icon: Icons.email_outlined,
-                            label: tEmail,
-                          ),
-                          const CustomTextField(
-                            isSecret: true,
-                            icon: Icons.lock_outlined,
-                            label: tPassword,
-                          ),
-                          const CustomTextField(
-                            icon: Icons.person_outlined,
-                            label: tFullName,
-                          ),
-                          CustomTextField(
-                            inputFormatters: [phoneFormatter],
-                            icon: Icons.phone_outlined,
-                            label: tPhone,
-                          ),
-                          CustomTextField(
-                            inputFormatters: [cpfFormatter],
-                            icon: Icons.file_copy_outlined,
-                            label: tCPF,
-                          ),
-                          SizedBox(
-                            height: tHeightSizeBox,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(tBorderRadius))),
-                              onPressed: () {},
-                              child: const Text(
-                                tSaveAccount,
-                                style: TextStyle(
-                                  fontSize: tFontSizeButton,
-                                  color: tColorsLight,
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            // Text Field e Button Login
+                            const CustomTextField(
+                              icon: Icons.email_outlined,
+                              label: tEmail,
+                              keyBoardType: TextInputType.emailAddress,
+                              validator: emailValidator,
+                            ),
+                            const CustomTextField(
+                              isSecret: true,
+                              icon: Icons.lock_outlined,
+                              label: tPassword,
+                              validator: passwordValidator,
+                            ),
+                            const CustomTextField(
+                              icon: Icons.person_outlined,
+                              label: tFullName,
+                              validator: nameValidator,
+                            ),
+                            CustomTextField(
+                              inputFormatters: [phoneFormatter],
+                              icon: Icons.phone_outlined,
+                              label: tPhone,
+                              keyBoardType: TextInputType.phone,
+                              validator: phoneValidator,
+                            ),
+                            CustomTextField(
+                              inputFormatters: [cpfFormatter],
+                              icon: Icons.file_copy_outlined,
+                              label: tCPF,
+                              keyBoardType: TextInputType.number,
+                              validator: cpfValidator,
+                            ),
+                            SizedBox(
+                              height: tHeightSizeBox,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(tBorderRadius))),
+                                onPressed: () {
+                                  _formKey.currentState!.validate();
+                                },
+                                child: const Text(
+                                  tSaveAccount,
+                                  style: TextStyle(
+                                    fontSize: tFontSizeButton,
+                                    color: tColorsLight,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                      ),
                     ),
                   ),
                 ],

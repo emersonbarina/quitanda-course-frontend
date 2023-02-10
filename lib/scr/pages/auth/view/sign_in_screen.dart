@@ -5,6 +5,7 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
+import 'package:quitanda/scr/services/validators.dart';
 import '../../../components/app_name_widget.dart';
 import '../../../constants/colors.dart';
 import 'package:get/get.dart';
@@ -84,28 +85,15 @@ class SignInScreen extends StatelessWidget {
                         controller: emailController,
                         icon: Icons.email_outlined,
                         label: tEmail,
-                        validator: (email) {
-                          if (email == null || email.isEmpty) {
-                            return tValidEmailEmpty;
-                          }
-                          if (!email.isEmail) return tValidEmail;
-                          return null;
-                        },
+                        validator: emailValidator,
                       ),
                       CustomTextField(
                         controller: passwordController,
                         isSecret: true,
                         icon: Icons.lock_outlined,
                         label: tPassword,
-                        validator: (password) {
-                          if (password == null || password.isEmpty) {
-                            return tValidPassEmpty;
-                          }
-                          if (password.length < 7) return tValidPassLength;
-                          return null;
-                        },
+                        validator: passwordValidator,
                       ),
-
                       // Login Button
                       SizedBox(
                         height: tHeightSizeBox,
@@ -127,7 +115,6 @@ class SignInScreen extends StatelessWidget {
 
                                         authController.signIn(
                                             email: email, password: password);
-
                                       } else {
                                         print('Há campos inválidos!');
                                       }

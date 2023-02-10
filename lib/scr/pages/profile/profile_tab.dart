@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 
@@ -6,6 +7,8 @@ import '../../components/custom_text_field.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
+
+import '../auth/controller/auth_controller.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({Key? key}) : super(key: key);
@@ -40,7 +43,9 @@ class _ProfileTabState extends State<ProfileTab> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.find<AuthController>().signOut();
+            },
             icon: const Icon(
               Icons.logout_outlined,
               color: tColorsLight,

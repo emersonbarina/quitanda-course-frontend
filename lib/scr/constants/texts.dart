@@ -20,6 +20,12 @@ const tValidEmailEmpty = 'Digite seu email';
 const tValidEmail = 'Digite um email válido';
 const tValidPassEmpty = 'Digite sua senha';
 const tValidPassLength = 'Digite um senha com pelo menos 7 caracteres.';
+const tValidName = 'Digite o nome';
+const tValidNameComplete = 'Digite o nome completo';
+const tValidPhone = 'Digite o telefone';
+const tValidPhoneCorrect = 'Digite um telefone válido';
+const tValidCPF = 'Digite um CPF válido';
+
 
 const tNavHome = 'Home';
 const tNavCart = 'Carrinho';
