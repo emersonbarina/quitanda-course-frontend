@@ -7,6 +7,12 @@ String authErrorsString(String? code){
       return tErrorInvalidCredentials;
     case 'Invalid session token':
       return tErrorInvalidCredentials;
+    case 'INVALID_FULLNAME':
+      return tErrorInvalidFullName;
+    case 'INVALID_PHONE':
+      return tErrorInvalidPhone;
+    case 'INVALID_CPF':
+      return tErrorInvalidCPF;
     default:
       return tErrorUndefined;
   }
