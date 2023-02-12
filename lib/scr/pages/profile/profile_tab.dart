@@ -28,7 +28,7 @@ class _ProfileTabState extends State<ProfileTab> {
     filter: {'#': RegExp(r'[0-9]')},
   );
 
-
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _ProfileTabState extends State<ProfileTab> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.find<AuthController>().signOut();
+              authController.signOut();
             },
             icon: const Icon(
               Icons.logout_outlined,
