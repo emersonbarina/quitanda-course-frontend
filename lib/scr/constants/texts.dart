@@ -13,6 +13,7 @@ const tCreateNewAccount = 'Criar uma conta';
 const tRecoverPassword = 'Recuperação de senha';
 const tRecoverYourEmail = 'Digite seu email cadastrado';
 const tRecover = 'Recuperar';
+const tVerifyEmail = 'Foi enviado um link de recuperação para o seu email';
 
 const tTitleAccount = 'Cadastro';
 const tEmail = 'Email';

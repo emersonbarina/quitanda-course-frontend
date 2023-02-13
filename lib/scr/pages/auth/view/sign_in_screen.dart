@@ -6,6 +6,7 @@ import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda/scr/pages/auth/view/components/forgot_password_dialog.dart';
+import 'package:quitanda/scr/services/utils_services.dart';
 import 'package:quitanda/scr/services/validators.dart';
 import '../../../components/app_name_widget.dart';
 import '../../../constants/colors.dart';
@@ -19,6 +20,8 @@ class SignInScreen extends StatelessWidget {
   // Controllers Fields
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final utilServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
@@ -136,13 +139,19 @@ class SignInScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {
-                            showDialog(
+                          onPressed: () async {
+                            final bool? result = await showDialog(
                               context: context,
                               builder: (_) {
-                                return ForgotPasswordDialog(email: emailController.text);
+                                return ForgotPasswordDialog(
+                                    email: emailController.text);
                               },
                             );
+                            if (result ?? false) {
+                              utilServices.showToast(
+                                message: tVerifyEmail,
+                              );
+                            }
                           },
                           child: const Text(tForgotPassword),
                         ),
