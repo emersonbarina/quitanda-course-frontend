@@ -7,6 +7,13 @@ const tCategory = 'Category';
 
 const tLogin = 'Entrar';
 const tSaveAccount = 'Cadastrar Usuário';
+const tForgotPassword = 'Esqueceu a senha?';
+const tOr = 'ou';
+const tCreateNewAccount = 'Criar uma conta';
+const tRecoverPassword = 'Recuperação de senha';
+const tRecoverYourEmail = 'Digite seu email cadastrado';
+const tRecover = 'Recuperar';
+
 const tTitleAccount = 'Cadastro';
 const tEmail = 'Email';
 const tPassword = 'Senha';

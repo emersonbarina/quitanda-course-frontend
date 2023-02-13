@@ -5,6 +5,7 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
+import 'package:quitanda/scr/pages/auth/view/components/forgot_password_dialog.dart';
 import 'package:quitanda/scr/services/validators.dart';
 import '../../../components/app_name_widget.dart';
 import '../../../constants/colors.dart';
@@ -135,8 +136,15 @@ class SignInScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
-                          child: const Text('Esqueceu a senha?'),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) {
+                                return ForgotPasswordDialog(email: emailController.text);
+                              },
+                            );
+                          },
+                          child: const Text(tForgotPassword),
                         ),
                       ),
 
@@ -153,7 +161,7 @@ class SignInScreen extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: tSpacePadding),
-                              child: Text('Ou'),
+                              child: Text(tOr),
                             ),
                             Expanded(
                               child: Divider(
@@ -182,7 +190,7 @@ class SignInScreen extends StatelessWidget {
                             Get.toNamed(PageRoutes.signUpRoute);
                           },
                           child: const Text(
-                            'Criar conta',
+                            tCreateNewAccount,
                             style: TextStyle(fontSize: tFontSizeButton),
                           ),
                         ),
