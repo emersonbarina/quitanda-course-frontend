@@ -1,7 +1,9 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quitanda/scr/components/custom_shimmer.dart';
+import 'package:quitanda/scr/pages/home/controller/home_controller.dart';
 import 'package:quitanda/scr/pages/home/view/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
@@ -19,10 +21,10 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  String selectedCategory = 'Frutas';
-
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
+
   late Function(GlobalKey) runAddToCardAnimation;
+
   var _cartQuantityItems = 0;
 
   void itemSelectedCartAnimations(GlobalKey gkImage) async {
@@ -33,16 +35,9 @@ class _HomeTabState extends State<HomeTab> {
     });
   }
 
-  bool isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        isLoading = false;
-      });
-    });
   }
 
   @override
@@ -141,83 +136,91 @@ class _HomeTabState extends State<HomeTab> {
             ),
 
             // Categories
-            Container(
-              padding: const EdgeInsets.only(left: 25),
-              height: tHeightSizeBox,
-              child: !isLoading
-                  ? ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, index) {
-                        return CategoryTile(
-                          onPressed: () {
-                            setState(() {
-                              selectedCategory = app_data.categories[index];
-                            });
+            GetBuilder<HomeController>(
+              builder: (controller) {
+                return Container(
+                  padding: const EdgeInsets.only(left: 25),
+                  height: tHeightSizeBox,
+                  child: !controller.isLoading
+                      ? ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (_, index) {
+                            return CategoryTile(
+                              onPressed: () {
+                                controller.selectCategory(
+                                    controller.allCategories[index]);
+                              },
+                              category: controller.allCategories[index].title,
+                              isSelected: controller.allCategories[index] ==
+                                  controller.currentCategory,
+                            );
                           },
-                          category: app_data.categories[index],
-                          isSelected:
-                              app_data.categories[index] == selectedCategory,
-                        );
-                      },
-                      separatorBuilder: (_, index) => const SizedBox(width: 10),
-                      itemCount: app_data.categories.length,
-                    )
-                  : ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: List.generate(
-                        6,
-                        (index) => Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(right: 12),
-                          child: CustomShimmer(
-                            height: 20,
-                            width: 80,
-                            borderRadius:
-                                BorderRadius.circular(tBorderRadiusCategory),
+                          separatorBuilder: (_, index) =>
+                              const SizedBox(width: 10),
+                          itemCount: controller.allCategories.length,
+                        )
+                      : ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: List.generate(
+                            6,
+                            (index) => Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(right: 12),
+                              child: CustomShimmer(
+                                height: 20,
+                                width: 80,
+                                borderRadius: BorderRadius.circular(
+                                    tBorderRadiusCategory),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                );
+              },
             ),
 
             // Grid
-            Expanded(
-              child: !isLoading
-                  ? GridView.builder(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 9 / 11.5,
-                      ),
-                      itemCount: app_data.items.length,
-                      itemBuilder: (_, index) {
-                        return ItemTile(
-                          item: app_data.items[index],
-                          cartAnimationMethod: itemSelectedCartAnimations,
-                        );
-                      },
-                    )
-                  : GridView.count(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                      physics: const BouncingScrollPhysics(),
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 9 / 11.5,
-                      children: List.generate(
-                        6,
-                        (index) => CustomShimmer(
-                          height: double.infinity,
-                          width: double.infinity,
-                          borderRadius:
-                              BorderRadius.circular(tBorderRadiusGrid),
+            GetBuilder<HomeController>(
+              builder: (controller) {
+                return Expanded(
+                  child: !controller.isLoading
+                      ? GridView.builder(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                          physics: const BouncingScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 9 / 11.5,
+                          ),
+                          itemCount: app_data.items.length,
+                          itemBuilder: (_, index) {
+                            return ItemTile(
+                              item: app_data.items[index],
+                              cartAnimationMethod: itemSelectedCartAnimations,
+                            );
+                          },
+                        )
+                      : GridView.count(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                          physics: const BouncingScrollPhysics(),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 9 / 11.5,
+                          children: List.generate(
+                            6,
+                            (index) => CustomShimmer(
+                              height: double.infinity,
+                              width: double.infinity,
+                              borderRadius:
+                                  BorderRadius.circular(tBorderRadiusGrid),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                );
+              },
             ),
           ],
         ),
