@@ -9,5 +9,6 @@ abstract class EndPoints{
   static String validateToken = '$baseUrl/validate-token';
   static String resetPassword = '$baseUrl/reset-password';
   static String getAllCategories = '$baseUrl/get-list-category';
+  static String getAllProducts = '$baseUrl/get-list-product';
 
 }

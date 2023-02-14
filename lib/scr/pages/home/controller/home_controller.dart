@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:quitanda/scr/models/item_model.dart';
 import 'package:quitanda/scr/pages/home/repository/home_repository.dart';
 import 'package:quitanda/scr/pages/home/result/home_result.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
@@ -20,7 +21,7 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit(){
+  void onInit() {
     super.onInit();
     getAllCategories();
   }
@@ -28,6 +29,8 @@ class HomeController extends GetxController {
   void selectCategory(CategoryModel category) {
     currentCategory = category;
     update();
+
+    getAllProducts();
   }
 
   Future<void> getAllCategories() async {
@@ -40,8 +43,37 @@ class HomeController extends GetxController {
       success: (data) {
         allCategories.assignAll(data);
 
-        if(allCategories.isEmpty) return;
+        if (allCategories.isEmpty) return;
         selectCategory(allCategories.first);
+      },
+      error: (message) {
+        utilServices.showToast(
+          message: message,
+          isError: true,
+        );
+      },
+    );
+  }
+
+  Future<void> getAllProducts() async {
+    setLoading(true);
+
+    Map<String, dynamic> body = {
+      "page": 0,
+      "itemsPerPage": 10,
+      "title": null,
+      "categoryId": "DLi8tlEVjv"
+    };
+
+    HomeResult<ItemModel> result = await homeRepository.getAllProducts(
+      body,
+    );
+    setLoading(false);
+
+    result.when(
+      success: (data) {
+        //getAllProducts.assignAll(data);
+        print(data);
       },
       error: (message) {
         utilServices.showToast(
