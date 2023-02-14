@@ -5,7 +5,7 @@ import 'package:quitanda/scr/pages/cart/cart_tab.dart';
 import 'package:quitanda/scr/pages/orders/orders_tab.dart';
 import 'package:quitanda/scr/pages/profile/profile_tab.dart';
 
-import '../home/home_tab.dart';
+import '../home/view/home_tab.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);

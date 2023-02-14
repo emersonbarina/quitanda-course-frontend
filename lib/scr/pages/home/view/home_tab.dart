@@ -1,15 +1,15 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:quitanda/scr/components/category_tile.dart';
 import 'package:quitanda/scr/components/custom_shimmer.dart';
-import 'package:quitanda/scr/components/item_tile.dart';
+import 'package:quitanda/scr/pages/home/view/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
-import '../../components/app_name_widget.dart';
+import '../../../components/app_name_widget.dart';
+import 'components/category_tile.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
