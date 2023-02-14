@@ -8,14 +8,14 @@ import '../../../services/http_manager.dart';
 class HomeRepository {
   final HttpManager _httpManager = HttpManager();
 
-  Future<HomeResult> getAllCategories() async {
+  Future<HomeResult<CategoryModel>> getAllCategories() async {
     final result = await _httpManager.restRequest(
       url: EndPoints.getAllCategories,
       method: HttpMethod.post,
     );
     if (result['result'] != null) {
       List<CategoryModel> data =
-          (result['result'] as List<Map<String, dynamic>>)
+          (List<Map<String, dynamic>>.from(result['result']))
               .map(CategoryModel.fromJson)
               .toList();
 
