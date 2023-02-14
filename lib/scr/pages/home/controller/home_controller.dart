@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:quitanda/scr/constants/app_config.dart';
 import 'package:quitanda/scr/models/item_model.dart';
 import 'package:quitanda/scr/pages/home/repository/home_repository.dart';
 import 'package:quitanda/scr/pages/home/result/home_result.dart';
@@ -59,10 +60,9 @@ class HomeController extends GetxController {
     setLoading(true);
 
     Map<String, dynamic> body = {
-      "page": 0,
-      "itemsPerPage": 10,
-      "title": null,
-      "categoryId": "DLi8tlEVjv"
+      'page': currentCategory!.pagination,
+      'categoryId': currentCategory!.id,
+      'itemsPerPage': tItemsPerPage,
     };
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(
