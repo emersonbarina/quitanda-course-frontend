@@ -8,7 +8,6 @@ import 'package:quitanda/scr/pages/home/view/components/item_tile.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
-import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
 import '../../../components/app_name_widget.dart';
 import 'components/category_tile.dart';
@@ -194,10 +193,10 @@ class _HomeTabState extends State<HomeTab> {
                             crossAxisSpacing: 10,
                             childAspectRatio: 9 / 11.5,
                           ),
-                          itemCount: app_data.items.length,
+                          itemCount: controller.allProducts.length,
                           itemBuilder: (_, index) {
                             return ItemTile(
-                              item: app_data.items[index],
+                              item: controller.allProducts[index],
                               cartAnimationMethod: itemSelectedCartAnimations,
                             );
                           },

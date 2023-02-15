@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   bool isLoading = false;
   List<CategoryModel> allCategories = [];
   CategoryModel? currentCategory;
+  List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
   // other form use GetX
   void setLoading(bool value) {
@@ -30,6 +31,8 @@ class HomeController extends GetxController {
   void selectCategory(CategoryModel category) {
     currentCategory = category;
     update();
+
+    if (currentCategory!.items.isNotEmpty) return;
 
     getAllProducts();
   }
@@ -72,8 +75,7 @@ class HomeController extends GetxController {
 
     result.when(
       success: (data) {
-        //getAllProducts.assignAll(data);
-        print(data);
+        currentCategory!.items = data;
       },
       error: (message) {
         utilServices.showToast(
