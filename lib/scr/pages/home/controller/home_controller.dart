@@ -11,14 +11,20 @@ class HomeController extends GetxController {
   final homeRepository = HomeRepository();
   final utilServices = UtilsServices();
 
-  bool isLoading = false;
+  bool isCategoryLoading = false;
+  bool isProductLoading = true;
   List<CategoryModel> allCategories = [];
   CategoryModel? currentCategory;
   List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
   // other form use GetX
-  void setLoading(bool value) {
-    isLoading = value;
+  void setLoading(bool value,{bool isProduct = false}) {
+    if( !isProduct ){
+      isCategoryLoading = value;
+    }else{
+      isProductLoading = value;
+    }
+
     update();
   }
 
@@ -60,7 +66,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllProducts() async {
-    setLoading(true);
+    setLoading(true, isProduct: true);
 
     Map<String, dynamic> body = {
       'page': currentCategory!.pagination,
@@ -71,7 +77,7 @@ class HomeController extends GetxController {
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(
       body,
     );
-    setLoading(false);
+    setLoading(false, isProduct: true);
 
     result.when(
       success: (data) {
