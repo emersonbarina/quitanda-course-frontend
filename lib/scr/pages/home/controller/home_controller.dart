@@ -44,7 +44,7 @@ class HomeController extends GetxController {
     debounce(
       searchTitle,
       (_) {
-        update();
+        filterByTitle();
       },
       time: const Duration(milliseconds: 600),
     );
@@ -132,6 +132,13 @@ class HomeController extends GetxController {
       'categoryId': currentCategory!.id,
       'itemsPerPage': tItemsPerPage,
     };
+
+    if(searchTitle.value.isNotEmpty){
+      body['title'] = searchTitle.value;
+      if(currentCategory!.id == ''){
+        body.remove('categoryId');
+      }
+    }
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(
       body,
