@@ -6,6 +6,9 @@ import 'package:quitanda/scr/models/item_model.dart';
 
 import 'package:quitanda/scr/services/utils_services.dart';
 import '../../constants/sizes.dart';
+import 'package:get/get.dart';
+
+import '../base/controller/navigation_controller.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key, required this.item}) : super(key: key);
@@ -20,6 +23,7 @@ class _ProductScreenState extends State<ProductScreen> {
   final UtilsServices utilsServices = UtilsServices();
 
   int cartItemQuantity = 1;
+  final navigationController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +118,14 @@ class _ProductScreenState extends State<ProductScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.circular(tBorderRadius))),
-                          onPressed: () {},
+                          onPressed: () {
+
+                            // Close screen
+                            Get.back();
+                            // go Cart
+                            navigationController.navigationPageView(NavigationTabs.cart);
+
+                          },
                           label: const Text(
                             tAddCart,
                             style: TextStyle(

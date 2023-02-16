@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
+import 'package:quitanda/scr/pages/base/controller/navigation_controller.dart';
 import 'package:quitanda/scr/pages/cart/cart_tab.dart';
 import 'package:quitanda/scr/pages/orders/orders_tab.dart';
 import 'package:quitanda/scr/pages/profile/profile_tab.dart';
 
 import '../home/view/home_tab.dart';
+import 'package:get/get.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
@@ -15,15 +17,14 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-  int currentIndex = 0;
-  final pageController = PageController();
+  final navigationController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: pageController,
+        controller: navigationController.pageController,
         children: const [
           HomeTab(),
           CartTab(),
@@ -31,40 +32,35 @@ class _BaseScreenState extends State<BaseScreen> {
           ProfileTab(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-            //pageController.jumpToPage(index);
-            pageController.animateToPage(
-                index,
-                duration: const Duration(milliseconds: 700),
-                curve: Curves.easeInCirc);
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: tColorsPrimary,
-        selectedItemColor: tColorsLight,
-        unselectedItemColor: tColorsLightUnselected,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: tNavHome,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_checkout_outlined),
-            label: tNavCart,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_outlined),
-            label: tNavOrder,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            label: tNavProfile,
-          ),
-        ],
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          currentIndex: navigationController.currentIndex,
+          onTap: (index) {
+            navigationController.navigationPageView(index);
+          },
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: tColorsPrimary,
+          selectedItemColor: tColorsLight,
+          unselectedItemColor: tColorsLightUnselected,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: tNavHome,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_checkout_outlined),
+              label: tNavCart,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_outlined),
+              label: tNavOrder,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outlined),
+              label: tNavProfile,
+            ),
+          ],
+        ),
       ),
     );
   }
