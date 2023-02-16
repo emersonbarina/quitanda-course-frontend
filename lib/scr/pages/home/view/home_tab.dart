@@ -22,6 +22,8 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
 
+  final searchController = TextEditingController();
+
   late Function(GlobalKey) runAddToCardAnimation;
 
   var _cartQuantityItems = 0;
@@ -34,10 +36,7 @@ class _HomeTabState extends State<HomeTab> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  //final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -103,35 +102,56 @@ class _HomeTabState extends State<HomeTab> {
         body: Column(
           children: [
             // Search
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  isDense: true,
-                  hintText: tSearchHint,
-                  hintStyle: const TextStyle(
-                    color: tColorsDark,
-                    fontSize: tFontSizeButton,
+            GetBuilder<HomeController>(
+              builder: (controller) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
                   ),
-                  prefixIcon: const Icon(
-                    Icons.search_outlined,
-                    color: tColorsDark,
-                    size: 21,
-                  ),
-                  fillColor: tColorsLight,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(60),
-                    borderSide: const BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  child: TextFormField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      controller.searchTitle.value = value;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      isDense: true,
+                      hintText: tSearchHint,
+                      hintStyle: const TextStyle(
+                        color: tColorsDark,
+                        fontSize: tFontSizeButton,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.search_outlined,
+                        color: tColorsDark,
+                        size: 21,
+                      ),
+                      suffixIcon: controller.searchTitle.value.isNotEmpty
+                          ? IconButton(
+                              onPressed: () {
+                                searchController.clear();
+                                controller.searchTitle.value = '';
+                                FocusScope.of(context).unfocus();
+                              },
+                              icon: const Icon(
+                                Icons.close,
+                                color: tColorsPrimary,
+                                size: 21,
+                              ))
+                          : null,
+                      fillColor: tColorsLight,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(60),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
 
             // Categories
@@ -195,12 +215,11 @@ class _HomeTabState extends State<HomeTab> {
                           ),
                           itemCount: controller.allProducts.length,
                           itemBuilder: (_, index) {
-
                             // last items of allProducts
-                            if(((index + 1) == controller.allProducts.length) && !controller.isLastPage) {
-
+                            if (((index + 1) ==
+                                    controller.allProducts.length) &&
+                                !controller.isLastPage) {
                               controller.loadMoreProducts();
-
                             }
 
                             return ItemTile(
