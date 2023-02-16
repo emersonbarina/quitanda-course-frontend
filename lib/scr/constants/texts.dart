@@ -68,4 +68,5 @@ const tPaymentTile ='Pagamento com PIX';
 const tPaymentDate ='Vencimento';
 const tPaymentButtonCopy ='Copiar código PIX';
 
+const tAllList = 'Todos';
 

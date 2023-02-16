@@ -5,6 +5,7 @@ import 'package:quitanda/scr/pages/home/repository/home_repository.dart';
 import 'package:quitanda/scr/pages/home/result/home_result.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 
+import '../../../constants/texts.dart';
 import '../../../models/category_model.dart';
 
 class HomeController extends GetxController {
@@ -79,6 +80,41 @@ class HomeController extends GetxController {
         );
       },
     );
+  }
+
+  void filterByTitle() {
+    // remove all products per categories
+    for (var category in allCategories) {
+      category.items.clear();
+      category.pagination = 0;
+    }
+
+    // verification if search is empty
+    if(searchTitle.value.isEmpty){
+      allCategories.removeAt(0);
+    }else{
+      CategoryModel? c = allCategories.firstWhereOrNull((cat) => cat.id == '');
+      if( c == null ) {
+        // create new category with all
+        final allProductCategory = CategoryModel(
+          title: tAllList,
+          id: '',
+          items: [],
+          pagination: 0,
+        );
+        // inserting all products
+        allCategories.insert(0, allProductCategory);
+      }else{
+        c.items.clear();
+        c.pagination = 0;
+      }
+    }
+
+    currentCategory = allCategories.first;
+
+    update();
+
+    getAllProducts();
   }
 
   loadMoreProducts() {
