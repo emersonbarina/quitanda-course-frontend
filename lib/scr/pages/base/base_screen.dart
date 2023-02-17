@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/pages/base/controller/navigation_controller.dart';
-import 'package:quitanda/scr/pages/cart/cart_tab.dart';
+import 'package:quitanda/scr/pages/cart/view/cart_tab.dart';
 import 'package:quitanda/scr/pages/orders/orders_tab.dart';
 import 'package:quitanda/scr/pages/profile/profile_tab.dart';
 

@@ -10,5 +10,6 @@ abstract class EndPoints{
   static String resetPassword = '$baseUrl/reset-password';
   static String getAllCategories = '$baseUrl/get-list-category';
   static String getAllProducts = '$baseUrl/get-list-product';
+  static String getCartItems = '$baseUrl/get-cart-items';
 
 }

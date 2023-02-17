@@ -3,12 +3,12 @@ import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/models/cart_item_model.dart';
-import 'package:quitanda/scr/pages/cart/widgets/cart_tile.dart';
+import 'package:quitanda/scr/pages/cart/view/widgets/cart_tile.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 
 import 'package:quitanda/scr/constants/app_data.dart' as app_data;
 
-import '../../components/payment_dialog.dart';
+import '../../../components/payment_dialog.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({Key? key}) : super(key: key);
