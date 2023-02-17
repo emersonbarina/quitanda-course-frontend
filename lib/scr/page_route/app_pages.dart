@@ -3,6 +3,7 @@ import 'package:quitanda/scr/pages/auth/view/sign_in_screen.dart';
 import 'package:quitanda/scr/pages/auth/view/sign_up_screen.dart';
 import 'package:quitanda/scr/pages/base/base_screen.dart';
 import 'package:quitanda/scr/pages/base/binding/navigation_binding.dart';
+import 'package:quitanda/scr/pages/cart/cart_binding/cart_binding.dart';
 import 'package:quitanda/scr/pages/home/binding/home_binding.dart';
 import 'package:quitanda/scr/pages/splash/splash_screen.dart';
 
@@ -26,6 +27,7 @@ abstract class AppPages {
       bindings: [
         NavigationBinding(),
         HomeBinding(),
+        CartBinding(),
       ],
     ),
   ];
