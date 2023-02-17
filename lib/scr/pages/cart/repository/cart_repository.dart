@@ -19,8 +19,10 @@ class CartRepository {
       },
     );
     if (result['result'] != null) {
+      print(result['result']);
 
     } else {
+      print('Ocorreu um erro');
 
     }
   }
