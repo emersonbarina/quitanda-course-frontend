@@ -1,4 +1,3 @@
-import 'package:quitanda/scr/models/cart_item_model.dart';
 import 'package:quitanda/scr/models/item_model.dart';
 import 'package:quitanda/scr/models/user_model.dart';
 
@@ -78,7 +77,7 @@ List<String> categories = [
   'Limpeza',
 ];
 
-List<CartItemModel> cartItems = [
+/*List<CartItemModel> cartItems = [
   CartItemModel(
     item: apple,
     quantity: 1,
@@ -91,7 +90,7 @@ List<CartItemModel> cartItems = [
     item: grape,
     quantity: 3,
   ),
-];
+];*/
 
 UserModel user = UserModel(
   name: 'Emerson',
@@ -110,8 +109,8 @@ List<OrderModel> orders = [
     status: 'preparing_purchase',
     total: 11.0,
     items: [
-      CartItemModel(item: apple, quantity: 2),
-      CartItemModel(item: grape, quantity: 3),
+      //CartItemModel(item: apple, quantity: 2),
+      //CartItemModel(item: grape, quantity: 3),
     ],
   ),
 
@@ -123,7 +122,7 @@ List<OrderModel> orders = [
     status: 'pending_payment',
     total: 10.0,
     items: [
-      CartItemModel(item: apple, quantity: 1),
+      //CartItemModel(item: apple, quantity: 1),
     ],
   ),
 
@@ -135,8 +134,8 @@ List<OrderModel> orders = [
     status: 'delivered',
     total: 20.0,
     items: [
-      CartItemModel(item: mango, quantity: 1),
-      CartItemModel(item: guava, quantity: 3),
+      //CartItemModel(item: mango, quantity: 1),
+      //CartItemModel(item: guava, quantity: 3),
     ],
   ),
 ];
