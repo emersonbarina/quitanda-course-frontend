@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
-import 'package:quitanda/scr/models/cart_item_model.dart';
+import 'package:quitanda/scr/pages/cart/controller/cart_controller.dart';
 import 'package:quitanda/scr/pages/cart/view/widgets/cart_tile.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 
@@ -19,21 +20,6 @@ class CartTab extends StatefulWidget {
 
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
-
-  void removeItemFromCart(CartItemModel cart) {
-    setState(() {
-      app_data.cartItems.remove(cart);
-      utilsServices.showToast(message: '${cart.item.itemName} Removido(a)');
-    });
-  }
-
-  double cartTotalPrice() {
-    double total = 0;
-    for (var item in app_data.cartItems) {
-      total += item.totalPrice();
-    }
-    return total;
-  }
 
   Future<bool?> showOrderConfirmation() {
     return showDialog(
@@ -84,16 +70,16 @@ class _CartTabState extends State<CartTab> {
       body: Column(
         children: [
           Expanded(
-            child: Expanded(
-              child: ListView.builder(
-                  itemCount: app_data.cartItems.length,
-                  itemBuilder: (_, index) {
-                    return CartTile(
-                      cartItem: app_data.cartItems[index],
-                      remove: removeItemFromCart,
-                    );
-                  }),
-            ),
+            child: GetBuilder<CartController>(builder: (controller) {
+              return ListView.builder(
+                itemCount: controller.cartItems.length,
+                itemBuilder: (_, index) {
+                  return CartTile(
+                    cartItem: controller.cartItems[index],
+                  );
+                },
+              );
+            }),
           ),
           Container(
             //height: 150,
@@ -119,13 +105,17 @@ class _CartTabState extends State<CartTab> {
                     fontSize: 12,
                   ),
                 ),
-                Text(
-                  utilsServices.priceToCurrency(cartTotalPrice()),
-                  style: const TextStyle(
-                    fontSize: 23,
-                    color: tColorsPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                GetBuilder<CartController>(
+                  builder: (controller) {
+                    return Text(
+                      utilsServices.priceToCurrency(controller.cartTotalPrice()),
+                      style: const TextStyle(
+                        fontSize: 23,
+                        color: tColorsPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }
                 ),
                 SizedBox(
                   height: tHeightSizeBox,
@@ -147,9 +137,9 @@ class _CartTabState extends State<CartTab> {
                           },
                         );
                       } else {
-                        utilsServices.showToast(message: 'Pedido não finalizado', isError: true);
+                        utilsServices.showToast(
+                            message: 'Pedido não finalizado', isError: true);
                       }
-
                     },
                     label: const Text(
                       tFinishOrder,
@@ -170,9 +160,5 @@ class _CartTabState extends State<CartTab> {
         ],
       ),
     );
-
   }
-
-
-
 }
