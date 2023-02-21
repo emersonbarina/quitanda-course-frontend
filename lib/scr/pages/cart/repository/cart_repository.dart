@@ -29,9 +29,32 @@ class CartRepository {
               .toList();
 
       return CartResult<List<CartItemModel>>.success(data);
-
     } else {
       return CartResult.error(tErrorCartItem);
+    }
+  }
+
+  Future<CartResult<String>> addItemToCart({
+    required String userId,
+    required String token,
+    required productId,
+    required int quantity,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: EndPoints.addCartItems,
+      method: HttpMethod.post,
+      body: {
+        'user': userId,
+        'quantity': quantity,
+        'productId': productId,
+      },
+      headers: {'token': token},
+    );
+    if (result['result'] != null) {
+      return CartResult<String>.success(result['result']['id']);
+
+    }else{
+      return CartResult.error(tErrorAddCartItem);
 
     }
   }

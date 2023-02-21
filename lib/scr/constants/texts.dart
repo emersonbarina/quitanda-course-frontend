@@ -71,4 +71,5 @@ const tPaymentButtonCopy ='Copiar código PIX';
 const tAllList = 'Todos';
 const tNotItems = 'Não há items para exibir';
 const tErrorCartItem = 'Não foi possível recuperar os itens do carrinho';
+const tErrorAddCartItem = 'Não foi adicionar o item ao carrinho';
 
