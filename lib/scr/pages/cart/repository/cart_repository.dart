@@ -13,7 +13,7 @@ class CartRepository {
     required String userId,
   }) async {
     final result = await _httpManager.restRequest(
-      url: EndPoints.getAllCategories,
+      url: EndPoints.getCartItems,
       method: HttpMethod.post,
       headers: {
         'X-Parse-Session-Token': token,
@@ -27,6 +27,7 @@ class CartRepository {
           List<Map<String, dynamic>>.from(result['result'])
               .map(CartItemModel.fromJson)
               .toList();
+
       return CartResult<List<CartItemModel>>.success(data);
 
     } else {

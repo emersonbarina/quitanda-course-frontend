@@ -6,9 +6,9 @@ part 'cart_item_model.g.dart';
 
 @JsonSerializable()
 class CartItemModel {
-  String id;
   @JsonKey(name: 'product')
   ItemModel item;
+  String id;
   int quantity;
 
   CartItemModel({
@@ -21,12 +21,10 @@ class CartItemModel {
 
   Map<String, dynamic> toJson() => _$CartItemModelToJson(this);
 
+  double totalPrice() => item.price * quantity;
 
   @override
   String toString() {
-    return 'CartItemModel{id: $id, item: $item, quantity: $quantity}';
+    return 'CartItemModel{item: $item, id: $id, quantity: $quantity}';
   }
-
-  double totalPrice() => item.price * quantity;
-
 }

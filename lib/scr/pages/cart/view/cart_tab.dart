@@ -70,7 +70,8 @@ class _CartTabState extends State<CartTab> {
       body: Column(
         children: [
           Expanded(
-            child: GetBuilder<CartController>(builder: (controller) {
+            child: GetBuilder<CartController>(
+                builder: (controller) {
               return ListView.builder(
                 itemCount: controller.cartItems.length,
                 itemBuilder: (_, index) {
