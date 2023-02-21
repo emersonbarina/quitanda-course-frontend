@@ -5,6 +5,7 @@ import 'package:quitanda/scr/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda/scr/pages/cart/cart_result/cart_result.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 
+import '../../../constants/texts.dart';
 import '../repository/cart_repository.dart';
 
 class CartController extends GetxController {
@@ -28,6 +29,18 @@ class CartController extends GetxController {
     return total;
   }
 
+  Future<bool> changeItemQuantity({
+    required CartItemModel item,
+    required int quantity,
+  }) async {
+    final result = await cartRepository.changeItemQuantity(
+      cartItemId: item.id,
+      quantity: quantity,
+      token: authController.user.token!,
+    );
+    return result;
+  }
+
   Future<void> getCartItems() async {
     final CartResult<List<CartItemModel>> result =
         await cartRepository.getCartItems(
@@ -49,15 +62,27 @@ class CartController extends GetxController {
   }
 
   int getItemIndex(ItemModel item) {
-    return cartItems.indexWhere((itemInList) => itemInList.id == item.id);
+    return cartItems.indexWhere((itemInList) => itemInList.item.id == item.id);
   }
 
-  Future<void> addItemToCart(
-      {required ItemModel item, int quantity = 1}) async {
+  Future<void> addItemToCart({
+    required ItemModel item,
+    int quantity = 1,
+  }) async {
     int itemIndex = getItemIndex(item);
 
     if (itemIndex >= 0) {
-      cartItems[itemIndex].quantity += quantity;
+      final product = cartItems[itemIndex];
+      final result =
+          await changeItemQuantity(item: product, quantity: (product.quantity + quantity));
+      if (result) {
+        cartItems[itemIndex].quantity += quantity;
+      } else {
+        utilServices.showToast(
+          message: tErrorChangeQuantity,
+          isError: true,
+        );
+      }
     } else {
       final CartResult<String> result = await cartRepository.addItemToCart(
         userId: authController.user.id!,
@@ -82,14 +107,6 @@ class CartController extends GetxController {
             isError: true,
           );
         },
-      );
-
-      cartItems.add(
-        CartItemModel(
-          id: '',
-          item: item,
-          quantity: quantity,
-        ),
       );
     }
     update();

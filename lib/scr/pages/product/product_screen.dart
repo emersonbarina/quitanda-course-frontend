@@ -12,7 +12,10 @@ import 'package:get/get.dart';
 import '../base/controller/navigation_controller.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({Key? key, required this.item}) : super(key: key);
+  const ProductScreen({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   final ItemModel item;
 
@@ -122,15 +125,15 @@ class _ProductScreenState extends State<ProductScreen> {
                                   borderRadius:
                                       BorderRadius.circular(tBorderRadius))),
                           onPressed: () {
-
                             // Close screen
                             Get.back();
                             // Add in CartItem
-                            cartController.addItemToCart(item: widget.item, quantity: cartItemQuantity);
-                            
-                            // go Cart
-                            navigationController.navigationPageView(NavigationTabs.cart);
+                            cartController.addItemToCart(
+                                item: widget.item, quantity: cartItemQuantity);
 
+                            // go Cart
+                            navigationController
+                                .navigationPageView(NavigationTabs.cart);
                           },
                           label: const Text(
                             tAddCart,

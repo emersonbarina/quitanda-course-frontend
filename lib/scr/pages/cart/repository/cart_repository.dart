@@ -34,6 +34,26 @@ class CartRepository {
     }
   }
 
+  Future<bool> changeItemQuantity({
+    required String cartItemId,
+    required int quantity,
+    required String token,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: EndPoints.changeItemQuantity,
+      method: HttpMethod.post,
+      body: {
+        'cartItemId': cartItemId,
+        'quantity': quantity,
+      },
+      headers: {
+        'X-Parse-Session-Token': token,
+      },
+    );
+
+    return result.isEmpty;
+  }
+
   Future<CartResult<String>> addItemToCart({
     required String userId,
     required String token,
