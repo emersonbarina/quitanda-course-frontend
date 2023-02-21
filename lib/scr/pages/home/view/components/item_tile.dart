@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/models/item_model.dart';
-import 'package:quitanda/scr/pages/product/product_screen.dart';
+import 'package:quitanda/scr/page_route/app_pages.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
+import 'package:get/get.dart';
 
 class ItemTile extends StatefulWidget {
   const ItemTile({
@@ -43,9 +44,8 @@ class _ItemTileState extends State<ItemTile> {
         // Information and Image
         GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (c) {
-              return ProductScreen(item: widget.item);
-            }));
+
+            Get.toNamed(PageRoutes.productRoute, arguments: widget.item);
           },
           child: Card(
             elevation: 1,

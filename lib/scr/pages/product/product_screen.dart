@@ -12,12 +12,11 @@ import 'package:get/get.dart';
 import '../base/controller/navigation_controller.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({
+  ProductScreen({
     Key? key,
-    required this.item,
   }) : super(key: key);
 
-  final ItemModel item;
+  final ItemModel item = Get.arguments;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
