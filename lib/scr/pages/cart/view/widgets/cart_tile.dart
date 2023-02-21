@@ -3,7 +3,9 @@ import 'package:quitanda/scr/components/quantity_widget.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/models/cart_item_model.dart';
+import 'package:quitanda/scr/pages/cart/controller/cart_controller.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
+import 'package:get/get.dart';
 
 class CartTile extends StatefulWidget {
   const CartTile({
@@ -19,6 +21,8 @@ class CartTile extends StatefulWidget {
 
 class _CartTileState extends State<CartTile> {
   final UtilsServices utilsServices = UtilsServices();
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,10 @@ class _CartTileState extends State<CartTile> {
           suffixText: widget.cartItem.item.unit,
           value: widget.cartItem.quantity,
           result: (quantity) {
+            controller.changeItemQuantity(
+              item: widget.cartItem,
+              quantity: quantity,
+            );
           },
           isRemovable: true,
         ),
