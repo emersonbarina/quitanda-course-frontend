@@ -48,14 +48,14 @@ class CartRepository {
         'quantity': quantity,
         'productId': productId,
       },
-      headers: {'token': token},
+      headers: {
+        'X-Parse-Session-Token': token,
+      },
     );
     if (result['result'] != null) {
       return CartResult<String>.success(result['result']['id']);
-
-    }else{
+    } else {
       return CartResult.error(tErrorAddCartItem);
-
     }
   }
 }

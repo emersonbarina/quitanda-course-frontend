@@ -3,6 +3,7 @@ import 'package:quitanda/scr/components/quantity_widget.dart';
 import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 import 'package:quitanda/scr/models/item_model.dart';
+import 'package:quitanda/scr/pages/cart/controller/cart_controller.dart';
 
 import 'package:quitanda/scr/services/utils_services.dart';
 import '../../constants/sizes.dart';
@@ -21,6 +22,8 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final UtilsServices utilsServices = UtilsServices();
+
+  final cartController = Get.find<CartController>();
 
   int cartItemQuantity = 1;
   final navigationController = Get.find<NavigationController>();
@@ -122,6 +125,9 @@ class _ProductScreenState extends State<ProductScreen> {
 
                             // Close screen
                             Get.back();
+                            // Add in CartItem
+                            cartController.addItemToCart(item: widget.item, quantity: cartItemQuantity);
+                            
                             // go Cart
                             navigationController.navigationPageView(NavigationTabs.cart);
 
