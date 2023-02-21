@@ -70,16 +70,29 @@ class _CartTabState extends State<CartTab> {
       body: Column(
         children: [
           Expanded(
-            child: GetBuilder<CartController>(
-                builder: (controller) {
-              return ListView.builder(
-                itemCount: controller.cartItems.length,
-                itemBuilder: (_, index) {
-                  return CartTile(
-                    cartItem: controller.cartItems[index],
-                  );
-                },
-              );
+            child: GetBuilder<CartController>(builder: (controller) {
+              if (controller.cartItems.isEmpty) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.remove_shopping_cart,
+                      size: 40,
+                      color: tColorsPrimary,
+                    ),
+                    Text(tCartNoItems),
+                  ],
+                );
+              } else {
+                return ListView.builder(
+                  itemCount: controller.cartItems.length,
+                  itemBuilder: (_, index) {
+                    return CartTile(
+                      cartItem: controller.cartItems[index],
+                    );
+                  },
+                );
+              }
             }),
           ),
           Container(
@@ -106,18 +119,16 @@ class _CartTabState extends State<CartTab> {
                     fontSize: 12,
                   ),
                 ),
-                GetBuilder<CartController>(
-                  builder: (controller) {
-                    return Text(
-                      utilsServices.priceToCurrency(controller.cartTotalPrice()),
-                      style: const TextStyle(
-                        fontSize: 23,
-                        color: tColorsPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
-                ),
+                GetBuilder<CartController>(builder: (controller) {
+                  return Text(
+                    utilsServices.priceToCurrency(controller.cartTotalPrice()),
+                    style: const TextStyle(
+                      fontSize: 23,
+                      color: tColorsPrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }),
                 SizedBox(
                   height: tHeightSizeBox,
                   child: ElevatedButton.icon(

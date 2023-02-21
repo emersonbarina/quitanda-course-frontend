@@ -29,6 +29,12 @@ class CartController extends GetxController {
     return total;
   }
 
+  int getCartTotalItems() {
+    return cartItems.isEmpty
+        ? 0
+        : cartItems.map((e) => e.quantity).reduce((a, b) => a + b);
+  }
+
   Future<bool> changeItemQuantity({
     required CartItemModel item,
     required int quantity,

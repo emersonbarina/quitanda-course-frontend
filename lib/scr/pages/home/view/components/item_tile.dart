@@ -3,6 +3,7 @@ import 'package:quitanda/scr/constants/colors.dart';
 import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/models/item_model.dart';
 import 'package:quitanda/scr/page_route/app_pages.dart';
+import 'package:quitanda/scr/pages/cart/controller/cart_controller.dart';
 import 'package:quitanda/scr/services/utils_services.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +25,7 @@ class _ItemTileState extends State<ItemTile> {
   final GlobalKey imageGk = GlobalKey();
 
   final UtilsServices utilsServices = UtilsServices();
+  final cartController = Get.find<CartController>();
 
   IconData tileIcon = Icons.add_shopping_cart_outlined;
 
@@ -119,6 +121,7 @@ class _ItemTileState extends State<ItemTile> {
               child: InkWell(
                 onTap: () {
                   switchIcon();
+                  cartController.addItemToCart(item: widget.item);
                   widget.cartAnimationMethod(imageGk);
                 },
                 child: Ink(

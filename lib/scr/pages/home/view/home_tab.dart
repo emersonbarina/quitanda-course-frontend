@@ -10,6 +10,8 @@ import 'package:quitanda/scr/constants/sizes.dart';
 import 'package:quitanda/scr/constants/texts.dart';
 
 import '../../../components/app_name_widget.dart';
+import '../../base/controller/navigation_controller.dart';
+import '../../cart/controller/cart_controller.dart';
 import 'components/category_tile.dart';
 
 class HomeTab extends StatefulWidget {
@@ -26,17 +28,19 @@ class _HomeTabState extends State<HomeTab> {
 
   late Function(GlobalKey) runAddToCardAnimation;
 
-  var _cartQuantityItems = 0;
+//  var _cartQuantityItems = 0;
 
   void itemSelectedCartAnimations(GlobalKey gkImage) async {
     await runAddToCardAnimation(gkImage);
 
-    setState(() {
-      cartKey.currentState!.runCartAnimation((++_cartQuantityItems).toString());
-    });
+//    setState(() {
+//      cartKey.currentState!.runCartAnimation((++_cartQuantityItems).toString());
+//    });
   }
 
-  //final controller = Get.find<HomeController>();
+  final navigationController = Get.find<NavigationController>();
+
+  //final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,35 +70,41 @@ class _HomeTabState extends State<HomeTab> {
                 top: 15,
                 right: 15,
               ),
-              child: GestureDetector(
-                onTap: () {},
-                child: badges.Badge(
-                  badgeContent: Text(
-                    _cartQuantityItems.toString(),
-                    style: const TextStyle(color: tColorsLight, fontSize: 12),
-                  ),
-                  badgeStyle: const badges.BadgeStyle(
-                    shape: badges.BadgeShape.circle,
-                    //badgeColor: Colors.red,
-                    elevation: 0,
-                  ),
-                  child: AddToCartIcon(
-                    key: cartKey,
-                    icon: const Icon(
-                      Icons.shopping_cart,
-                      color: tColorsPrimary,
+              child: GetBuilder<CartController>(
+                builder: (controller) {
+                  return GestureDetector(
+                    onTap: () {
+                      navigationController.navigationPageView(NavigationTabs.cart);
+                    },
+                    child: badges.Badge(
+                      badgeContent: Text(
+                        controller.getCartTotalItems().toString(),
+                        style: const TextStyle(color: tColorsLight, fontSize: 12),
+                      ),
+                      badgeStyle: const badges.BadgeStyle(
+                        shape: badges.BadgeShape.circle,
+                        //badgeColor: Colors.red,
+                        elevation: 0,
+                      ),
+                      child: AddToCartIcon(
+                        key: cartKey,
+                        icon: const Icon(
+                          Icons.shopping_cart,
+                          color: tColorsPrimary,
+                        ),
+                        //  badge options of AddToCartIcon, I'm using badges.Badge
+                        badgeOptions: const BadgeOptions(
+                          active: false,
+                          backgroundColor: Colors.red,
+                          fontSize: 12,
+                          foregroundColor: tColorsLight,
+                          width: 15,
+                          height: 15,
+                        ),
+                      ),
                     ),
-                    //  badge options of AddToCartIcon, I'm using badges.Badge
-                    badgeOptions: const BadgeOptions(
-                      active: false,
-                      backgroundColor: Colors.red,
-                      fontSize: 12,
-                      foregroundColor: tColorsLight,
-                      width: 15,
-                      height: 15,
-                    ),
-                  ),
-                ),
+                  );
+                }
               ),
             ),
           ],
